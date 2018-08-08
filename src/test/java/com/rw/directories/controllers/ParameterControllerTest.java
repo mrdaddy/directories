@@ -39,7 +39,7 @@ public class ParameterControllerTest {
     private ResultSet resultSet;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         initMocks(this);
         parameterController = new ParameterController();
         parameterDao = new ParameterDao();
@@ -67,11 +67,11 @@ public class ParameterControllerTest {
     @SneakyThrows
     public void getParameterByCode() {
 
-        when(resultSet.next()).thenReturn(true).thenReturn(true).thenReturn(false);
+      /*  when(resultSet.next()).thenReturn(true).thenReturn(true).thenReturn(false);
         when(resultSet.getString("CODE")).thenReturn("TEST_CODE3");
         when(resultSet.getString("CATEGORY")).thenReturn("M");
-        when(resultSet.getString("VALUE")).thenReturn("Test value 3");
-        when(jdbcTemplate.queryForObject(anyString(), anyMap(), any(RowMapper.class))).thenCallRealMethod();
+        when(resultSet.getString("VALUE")).thenReturn("Test value 3");*/
+        when(jdbcTemplate.queryForObject(anyString(), anyMap(), any(RowMapper.class))).thenReturn(new Parameter("M","TEST_CODE3","Test value 3"));
 
         Parameter parameter = parameterController.getParameterByCode("TEST_CODE3");
         assertThat(parameter.getCode(), is("TEST_CODE3"));
