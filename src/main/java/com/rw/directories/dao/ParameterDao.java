@@ -2,6 +2,9 @@ package com.rw.directories.dao;
 
 import com.rw.directories.ParameterConst;
 import com.rw.directories.dto.Parameter;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,6 +21,7 @@ import java.util.Map;
 @Transactional
 @Repository
 public class ParameterDao {
+    @Getter @Setter
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -26,11 +30,7 @@ public class ParameterDao {
                 SQLQueries.PARAMS_INFO, new RowMapper<Parameter>() {
                     public Parameter mapRow(ResultSet rs, int rowNum)
                             throws SQLException {
-                        Parameter parameter = new Parameter();
-                        parameter.setCategory(rs.getString("TYPE"));
-                        parameter.setCode(rs.getString("CODE").trim());
-                        parameter.setValue(rs.getString("VALUE"));
-                        return parameter;
+                        return getParameter(rs);
                     }
                 });
         return params;
@@ -43,14 +43,19 @@ public class ParameterDao {
                 SQLQueries.PARAM_INFO, params, new RowMapper<Parameter>() {
                     public Parameter mapRow(ResultSet rs, int rowNum)
                             throws SQLException {
-                        Parameter parameter = new Parameter();
-                        parameter.setCategory(rs.getString("TYPE"));
-                        parameter.setCode(rs.getString("CODE").trim());
-                        parameter.setValue(rs.getString("VALUE"));
-                        return parameter;
+                        return getParameter(rs);
                     }
                 });
         return param;
+    }
+
+    @SneakyThrows
+    private Parameter getParameter(ResultSet rs)  {
+        Parameter parameter = new Parameter();
+        parameter.setCategory(rs.getString("TYPE"));
+        parameter.setCode(rs.getString("CODE").trim());
+        parameter.setValue(rs.getString("VALUE"));
+        return parameter;
     }
 
 

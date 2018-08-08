@@ -3,6 +3,8 @@ package com.rw.directories.controllers;
 import com.rw.directories.dto.Parameter;
 import com.rw.directories.services.ParameterService;
 import io.swagger.annotations.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import java.util.List;
 @Api(value="parameters", description="Сервис получение данных из справочника параметров СППД", tags = "Справочник параметров", basePath="/directories")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class ParameterController {
+    @Getter @Setter
     @Autowired
     ParameterService parameterService;
 
