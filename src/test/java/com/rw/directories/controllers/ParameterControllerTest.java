@@ -52,9 +52,9 @@ public class ParameterControllerTest {
     @Test
     public void getParameters() {
         List<Parameter> testPars = new ArrayList<>();
-        testPars.add(new Parameter("T","TEST_CODE","Test value"));
-        testPars.add(new Parameter("T","TEST_CODE2","Test value 2"));
-        testPars.add(new Parameter("M","TEST_CODE3","Test value 3"));
+        testPars.add(new Parameter(1,"T","TEST_CODE","Test value"));
+        testPars.add(new Parameter(2,"T","TEST_CODE2","Test value 2"));
+        testPars.add(new Parameter(3,"M","TEST_CODE3","Test value 3"));
 
         when(jdbcTemplate.query(anyString(), any(RowMapper.class))).thenReturn(testPars);
 
@@ -71,7 +71,7 @@ public class ParameterControllerTest {
         when(resultSet.getString("CODE")).thenReturn("TEST_CODE3");
         when(resultSet.getString("CATEGORY")).thenReturn("M");
         when(resultSet.getString("VALUE")).thenReturn("Test value 3");*/
-        when(jdbcTemplate.queryForObject(anyString(), anyMap(), any(RowMapper.class))).thenReturn(new Parameter("M","TEST_CODE3","Test value 3"));
+        when(jdbcTemplate.queryForObject(anyString(), anyMap(), any(RowMapper.class))).thenCallRealMethod();//.thenReturn(new Parameter("M","TEST_CODE3","Test value 3"));
 
         Parameter parameter = parameterController.getParameterByCode("TEST_CODE3");
         assertThat(parameter.getCode(), is("TEST_CODE3"));

@@ -52,6 +52,7 @@ public class ParameterDao {
     @SneakyThrows
     private Parameter getParameter(ResultSet rs)  {
         Parameter parameter = new Parameter();
+        parameter.setId(rs.getInt("ID"));
         parameter.setCategory(rs.getString("TYPE"));
         parameter.setCode(rs.getString("CODE").trim());
         parameter.setValue(rs.getString("VALUE"));

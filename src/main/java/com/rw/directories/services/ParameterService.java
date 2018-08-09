@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Log
 public class ParameterService {
     @Getter @Setter
     @Autowired
