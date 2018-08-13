@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,15 +21,13 @@ import java.util.List;
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class CountryController {
 
-    @Getter
-    @Setter
     @Autowired
     CountryService countryService;
 
-    @RequestMapping(path="/directories/countries", method = RequestMethod.GET)
+    @RequestMapping(path="/${service.version}/directories/countries", method = RequestMethod.GET)
     @ApiOperation(value = "Список всех стран")
-    List<Country> getCountries() {
-        return countryService.getCountries();
+    List<Country> getCountries(@RequestParam String lang) {
+        return countryService.getCountries(lang);
     }
 
 }

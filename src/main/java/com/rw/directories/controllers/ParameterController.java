@@ -19,17 +19,16 @@ import java.util.List;
 @Api(value="parameters", description="Сервис получение данных из справочника параметров СППД", tags = "Справочник параметров", basePath="/directories")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class ParameterController {
-    @Getter @Setter
     @Autowired
     ParameterService parameterService;
 
-    @RequestMapping(path="/directories/parameters", method = RequestMethod.GET)
+    @RequestMapping(path="/${service.version}/directories/parameters", method = RequestMethod.GET)
     @ApiOperation(value = "Список всех параметров")
     List<Parameter> getParameters() {
         return parameterService.getParameters();
     }
 
-    @RequestMapping(path="/directories/parameter/{code}", method = RequestMethod.GET)
+    @RequestMapping(path="/${service.version}/directories/parameter/{code}", method = RequestMethod.GET)
     @ApiOperation(notes = "Сервис получения параметра по коду", value = "Параметр по коду")
     Parameter getParameterByCode(@PathVariable("code") @ApiParam(value="Код параметра") String code) {
         return parameterService.getParameter(code);

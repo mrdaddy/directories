@@ -44,9 +44,9 @@ public class ParameterControllerTest {
         parameterController = new ParameterController();
         parameterDao = new ParameterDao();
         parameterService = new ParameterService();
-        parameterDao.setJdbcTemplate(jdbcTemplate);
+        //parameterDao.setJdbcTemplate(jdbcTemplate);
         parameterService.setParameterDao(parameterDao);
-        parameterController.setParameterService(parameterService);
+       // parameterController.setParameterService(parameterService);
     }
 
     @Test

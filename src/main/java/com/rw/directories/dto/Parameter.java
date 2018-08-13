@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Parameter {
+public class Parameter extends Directory {
     @NotNull
     @ApiModelProperty(example = "1", required = true, value = "Уникальный идентификатор параметра (записи)", dataType = "int")
     private Integer id;

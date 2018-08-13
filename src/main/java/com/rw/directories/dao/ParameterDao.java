@@ -14,14 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Transactional
 @Repository
 public class ParameterDao {
-    @Getter @Setter
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -56,6 +53,7 @@ public class ParameterDao {
         parameter.setCategory(rs.getString("TYPE"));
         parameter.setCode(rs.getString("CODE").trim());
         parameter.setValue(rs.getString("VALUE"));
+        parameter.setUpdatedOn(rs.getTimestamp("UPDATED_ON"));
         return parameter;
     }
 
