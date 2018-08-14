@@ -27,12 +27,7 @@ public class CountryDao {
     @SneakyThrows
         public List<Country> getCountries(String language) {
         List<Country> countries = jdbcTemplate.query(
-                formatQueryWithParams(SQLQueries.COUNTRIES_INFO, language), new RowMapper<Country>() {
-                    public Country mapRow(ResultSet rs, int rowNum)
-                            throws SQLException {
-                        return getCountry(rs);
-                    }
-                });
+                formatQueryWithParams(SQLQueries.COUNTRIES_INFO, language), (rs, rowNum) -> getCountry(rs));
         return countries;
     }
 

@@ -24,12 +24,7 @@ public class ParameterDao {
 
     public List<Parameter> getParameters() {
         List<Parameter> params = jdbcTemplate.query(
-                SQLQueries.PARAMS_INFO, new RowMapper<Parameter>() {
-                    public Parameter mapRow(ResultSet rs, int rowNum)
-                            throws SQLException {
-                        return getParameter(rs);
-                    }
-                });
+                SQLQueries.PARAMS_INFO, (rs, rowNum) -> getParameter(rs));
         return params;
     }
 
@@ -37,12 +32,7 @@ public class ParameterDao {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("CODE", code);
         Parameter param = jdbcTemplate.queryForObject(
-                SQLQueries.PARAM_INFO, params, new RowMapper<Parameter>() {
-                    public Parameter mapRow(ResultSet rs, int rowNum)
-                            throws SQLException {
-                        return getParameter(rs);
-                    }
-                });
+                SQLQueries.PARAM_INFO, params, (rs, rowNum) -> getParameter(rs));
         return param;
     }
 

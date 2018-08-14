@@ -110,7 +110,11 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>1.5.20</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>26.0-jre</version>
+		</dependency>
 		<!-- <dependency>
 			<groupId>com.openshift</groupId>
 			<artifactId>openshift-restclient-java</artifactId>
@@ -290,7 +294,12 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<dependencies>
-				<!-- TODO: ADD H2 database dependency here -->
+				<dependency>
+					<groupId>org.apache.derby</groupId>
+					<artifactId>derby</artifactId>
+					<version>10.14.2.0</version>
+					<scope>test</scope>
+				</dependency>
 			</dependencies>
 		</profile>
 		<profile>
