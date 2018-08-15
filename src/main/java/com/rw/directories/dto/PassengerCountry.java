@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PassengerCountry extends Directory {
-    @ApiModelProperty(example = "Гонконг", required = true, value = "Наименование государства", dataType = "String")
+    @ApiModelProperty(example = "Гонконг", required = true, value = "Наименование государства на указанном языке", dataType = "String")
     private String name;
 
     @ApiModelProperty(example = "HKG", required = true, value = "Код ISO государства", dataType = "String")

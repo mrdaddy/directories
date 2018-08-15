@@ -22,7 +22,7 @@ public class PassengerCountryController {
 
     @RequestMapping(path="/${service.version}/directories/pass-countries", method = RequestMethod.GET)
     @ApiOperation(value = "Список всех государств")
-    List<PassengerCountry> getCountries(@RequestParam String lang) {
+    List<PassengerCountry> getPassengerCountries(@RequestParam String lang) {
         return passengerCountryService.getPassengerCountries(lang);
     }
 
