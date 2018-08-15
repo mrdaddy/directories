@@ -20,7 +20,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.rw.directories.controllers"))
-                .paths(regex("/directories.*"))
+                .paths(regex("/v1/directories.*"))
                 .build()
                 .apiInfo(metaData());
     }
@@ -37,7 +37,7 @@ public class SwaggerConfig {
                         "<li>− графическое представлениt вагона поезда с нумерованными местами;</li>" +
                         "<li>− информацию об обновлениях справочников;</li>" +
                         "<li>− обновления справочников.</li></ul>")
-                .version("1.0.0")
+                .version("v1")
                 .license("")
                 .licenseUrl("")
                 .build();

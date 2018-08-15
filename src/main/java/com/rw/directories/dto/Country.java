@@ -1,28 +1,19 @@
 package com.rw.directories.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Country extends Directory{
-
-
-    @ApiModelProperty(example = "1", required = true, value = "Уникальный идентификатор страны (записи)", dataType = "int")
-    private int id;
-
-    @ApiModelProperty(example = "21", required = true, value = "Код страны", dataType = "String")
+    @ApiModelProperty(example = "21", required = true, value = "Код государства", dataType = "String")
     private String code;
 
-    @ApiModelProperty(example = "БЕЛАРУСЬ", required = true, value = "Название страны на указанном языке", dataType = "String")
+    @ApiModelProperty(example = "БЕЛАРУСЬ", required = true, value = "Наименование государства на указанном языке", dataType = "String")
     private String name;
 
-    @ApiModelProperty(example = "true", allowableValues = "true, false", required = true, value = "Признак, указывающий, продаются ли в данную страну проездные документы", dataType = "boolean")
+/*    @ApiModelProperty(example = "true", allowableValues = "true, false", required = true, value = "Признак, указывающий, продаются ли в данную страну проездные документы", dataType = "boolean")
     private boolean ticketSellingAllowed;
 
     @ApiModelProperty(example = "100", required = false, value = "Приоритет по умолчанию станций данной страны для выбора", dataType = "int")
@@ -36,7 +27,7 @@ public class Country extends Directory{
 
     @ApiModelProperty(example = "Время прибытия местное", required = false, value = "Сообщение о времени прибытия на языке, указанном в параметре lang", dataType = "String")
     private String arrivalMsg;
-
+*/
     @ApiModelProperty(example = "true", required = true, value = "Признак, указывающий, как осуществляется продажа проездных документов (билетов) – по “глобальной цене” или нет", dataType = "boolean")
     private boolean globalPrice;
 

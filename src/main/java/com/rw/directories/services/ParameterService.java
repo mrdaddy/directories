@@ -2,19 +2,14 @@ package com.rw.directories.services;
 
 import com.rw.directories.dao.ParameterDao;
 import com.rw.directories.dto.Parameter;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
 public class ParameterService {
-    @Getter @Setter
     @Autowired
     private ParameterDao parameterDao;
 
@@ -23,7 +18,7 @@ public class ParameterService {
         return parameters;
     }
 
-    public Parameter getParameter(String code) {
+    public Parameter getParameter(@NotNull String code) {
         return parameterDao.getParameterByCode(code);
     }
 
