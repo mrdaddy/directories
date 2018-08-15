@@ -2,8 +2,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.Country;
 import com.rw.directories.services.CountryService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,13 @@ public class CountryController {
 
     @RequestMapping(path="/${service.version}/directories/countries", method = RequestMethod.GET)
     @ApiOperation(value = "Список всех государств")
-    List<Country> getCountries(@RequestParam String lang) {
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",
+                    responseHeaders = {
+                            @ResponseHeader(name = "ETag",
+                                    response = String.class)})
+    })
+    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang) {
         return countryService.getCountries(lang);
     }
 
