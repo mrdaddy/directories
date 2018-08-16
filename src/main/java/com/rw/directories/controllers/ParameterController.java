@@ -5,10 +5,7 @@ import com.rw.directories.services.ParameterService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,26 +17,26 @@ public class ParameterController {
     ParameterService parameterService;
 
     @RequestMapping(path="/${service.version}/directories/parameters", method = RequestMethod.GET)
-    @ApiOperation(value = "Список всех параметров")
+    @ApiOperation(value = "Справочник параметров СППД")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {
-                            @ResponseHeader(name = "ETag",
-                                    response = String.class)})
+                            @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
+            @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<Parameter> getParameters() {
+    List<Parameter> getParameters(@RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameters();
     }
 
     @RequestMapping(path="/${service.version}/directories/parameter/{code}", method = RequestMethod.GET)
-    @ApiOperation(notes = "Сервис получения параметра по коду", value = "Параметр по коду")
+    @ApiOperation(value = "Параметр СППД по коду")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {
-                            @ResponseHeader(name = "ETag",
-                                    response = String.class)})
+                            @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
+            @ApiResponse(code = 304, message = "Not Modified")
     })
-    Parameter getParameterByCode(@PathVariable("code") @ApiParam(value="Код параметра") String code) {
+    Parameter getParameterByCode(@PathVariable("code") @ApiParam(value="Код параметра") String code, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameter(code);
     }
 

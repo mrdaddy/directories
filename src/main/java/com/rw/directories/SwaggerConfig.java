@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
-@Configuration
+@Configuration(value = "test1")
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
@@ -32,11 +32,11 @@ public class SwaggerConfig {
                         "<li>− параметры СППД;</li>" +
                         "<li>− список государств выдачи документа, удостоверяющего личность пассажира;</li>" +
                         "<li>− список типов документов, удостоверяющих личность пассажира;</li>" +
-                        "<li>− классы обслуживания;</li>" +
+                        /*"<li>− классы обслуживания;</li>" +
                         "<li>− типы вагонов;</li>" +
-                        "<li>− графическое представлениt вагона поезда с нумерованными местами;</li>" +
-                        "<li>− информацию об обновлениях справочников;</li>" +
-                        "<li>− обновления справочников.</li></ul>")
+                        "<li>− графическое представлениt вагона поезда с нумерованными местами;</li>" +*/
+                        "<li>− информацию об обновлениях справочников;</li>"
+                        )
                 .version("v1")
                 .license("")
                 .licenseUrl("")

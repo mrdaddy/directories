@@ -5,10 +5,7 @@ import com.rw.directories.services.DirectoryUpdateService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,10 +21,10 @@ public class DirectoryUpdateController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {
-                            @ResponseHeader(name = "ETag",
-                                    response = String.class)})
+                            @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
+            @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<DirectoryUpdate> getDirectoryUpdates() {
+    List<DirectoryUpdate> getDirectoryUpdates(@RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return directoryUpdateService.getDirectoryUpdates();
     }
 

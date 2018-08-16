@@ -5,11 +5,9 @@ import com.rw.directories.services.CountryService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.HeaderParam;
 import java.util.List;
 
 @RestController
@@ -21,14 +19,15 @@ public class CountryController {
     CountryService countryService;
 
     @RequestMapping(path="/${service.version}/directories/countries", method = RequestMethod.GET)
-    @ApiOperation(value = "Список всех государств")
+    @ApiOperation(value = "Справочник государств, в которые могут продаваться проездные документы")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {
-                            @ResponseHeader(name = "ETag",
-                                    response = String.class)})
+                            @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
+            @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang) {
+
+    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return countryService.getCountries(lang);
     }
 

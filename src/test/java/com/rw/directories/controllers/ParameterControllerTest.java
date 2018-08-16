@@ -53,7 +53,7 @@ public class ParameterControllerTest {
     @Test
     public void getParameters() {
         when(parameterService.getParameters()).thenReturn(testPars);
-        testPars = parameterController.getParameters();
+        testPars = parameterController.getParameters("");
         assertThat(testPars.size(), is(3));
         verify(parameterService).getParameters();
     }
@@ -62,7 +62,7 @@ public class ParameterControllerTest {
     @SneakyThrows
     public void getParameterByCode() {
         when(parameterService.getParameter("TEST_CODE")).thenReturn(testPars.get(0));
-        Parameter parameter = parameterController.getParameterByCode("TEST_CODE");
+        Parameter parameter = parameterController.getParameterByCode("TEST_CODE","");
         assertThat(parameter.getCode(), is("TEST_CODE"));
         verify(parameterService).getParameter(("TEST_CODE"));
     }

@@ -27,7 +27,6 @@
         <swagger.directory>${project.build.directory}/generated-docs/swagger</swagger.directory>
         <asciidoctor.directory>${project.build.directory}/generated-docs/asciidoc</asciidoctor.directory>
 
-
 		<fabric8-maven-plugin.version>3.5.41</fabric8-maven-plugin.version>
 
 
