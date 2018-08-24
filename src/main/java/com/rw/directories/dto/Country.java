@@ -29,7 +29,7 @@ public class Country extends Directory{
     private String arrivalMsg;
 */
     @ApiModelProperty(example = "true", required = true, value = "Признак, указывающий, как осуществляется продажа проездных документов (билетов) – по “глобальной цене” или нет", dataType = "boolean")
-    private boolean globalPrice;
+    private boolean isGlobalPrice;
 
     @ApiModelProperty(example = "true", required = true, value = "Максимальный возраст ребенка для проезда по безденежному тарифу", dataType = "int")
     private int freeTicketAge;

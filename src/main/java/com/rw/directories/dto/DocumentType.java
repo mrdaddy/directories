@@ -24,7 +24,7 @@ public class DocumentType extends Directory {
     private int useForET;
 
     @ApiModelProperty(example = "true", required = true, allowableValues = "true, false", value = "Признак, указывающий, показывается ли данный тип документа при покупке проездного документа “по глобальной цене”", dataType = "boolean")
-    private boolean useForGlobalPrice;
+    private boolean isUsedForGlobalPrice;
 
     @ApiModelProperty(example = "", required = true, allowableValues = "true, false", value = "Код типа документа в АСУ “Экспресс”", dataType = "String")
     private String expressCode;
