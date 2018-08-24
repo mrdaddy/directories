@@ -17,7 +17,7 @@ public class DirectoryUpdateController {
     DirectoryUpdateService directoryUpdateService;
 
     @RequestMapping(path="/${service.version}/directories/dir-updates", method = RequestMethod.GET)
-    @ApiOperation(value = "Список всех справочников с датой и временем последнего обновления")
+    @ApiOperation(value = "Получение списка всех справочников с датой и временем последнего обновления")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {

@@ -19,7 +19,7 @@ public class CountryController {
     CountryService countryService;
 
     @RequestMapping(path="/${service.version}/directories/countries", method = RequestMethod.GET)
-    @ApiOperation(value = "Справочник государств, в которые могут продаваться проездные документы")
+    @ApiOperation(value = "Получение справочника государств, в которые могут продаваться проездные документы")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {

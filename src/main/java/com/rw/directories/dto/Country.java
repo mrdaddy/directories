@@ -1,11 +1,13 @@
 package com.rw.directories.dto;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel(description = "Государство из справочника государств, в которые могут продаваться проездные документы")
 public class Country extends Directory{
     @ApiModelProperty(example = "21", required = true, value = "Код государства", dataType = "String")
     private String code;

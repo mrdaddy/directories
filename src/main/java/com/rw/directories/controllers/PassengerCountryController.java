@@ -17,7 +17,7 @@ public class PassengerCountryController {
     PassengerCountryService passengerCountryService;
 
     @RequestMapping(path="/${service.version}/directories/pass-countries", method = RequestMethod.GET)
-    @ApiOperation(value = "Список всех государств выдачи документа, удостоверяющего личность пассажира")
+    @ApiOperation(value = "Получение справочника всех государств выдачи документа, удостоверяющего личность пассажира")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {

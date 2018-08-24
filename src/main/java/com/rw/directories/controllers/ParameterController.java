@@ -17,7 +17,7 @@ public class ParameterController {
     ParameterService parameterService;
 
     @RequestMapping(path="/${service.version}/directories/parameters", method = RequestMethod.GET)
-    @ApiOperation(value = "Справочник параметров СППД")
+    @ApiOperation(value = "Получение справочника параметров СППД")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {

@@ -17,7 +17,7 @@ public class DocumentTypeController {
     DocumentTypeService documentTypeService;
 
     @RequestMapping(path="/${service.version}/directories/doc-types", method = RequestMethod.GET)
-    @ApiOperation(value = "Список типов документов, удостоверяющих личность пассажира")
+    @ApiOperation(value = "Получение справочника типов документов, удостоверяющих личность пассажира")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
                     responseHeaders = {

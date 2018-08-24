@@ -1,5 +1,6 @@
 package com.rw.directories.dto;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel(description = "Тип документа, удостоверяющего личность пассажира")
 public class DocumentType extends Directory {
 
     @ApiModelProperty(example = "ПБ", required = true, value = "Код типа документа в СППД", dataType = "String")
