@@ -32,7 +32,7 @@ public class DocumentTypeDao {
         documentType.setName(rs.getString("NAME"));
         documentType.setStatus(rs.getString("STATUS"));
         documentType.setExpressCode(rs.getString("EXPRESS_CODE"));
-        documentType.setUseForGlobalPrice(toBoolean(rs.getInt("IS_GP_USED")));
+        documentType.setUsedForGlobalPrice(toBoolean(rs.getInt("IS_GP_USED")));
         documentType.setUseForET(rs.getInt("USE_FOR_ET"));
         return documentType;
     }
