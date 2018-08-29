@@ -39,7 +39,7 @@ public class ParameterController {
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    Parameter getParameterByCode(@Valid  @PathVariable("code") @ApiParam(value="Код параметра") @Size(min = 1, max = 32) String code, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    Parameter getParameterByCode(@PathVariable("code") @ApiParam(value="Код параметра") String code, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameter(code);
     }
 
