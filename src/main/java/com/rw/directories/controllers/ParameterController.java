@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @Api(value="parameters", description="Сервис получение данных из справочника параметров СППД", tags = "Справочник параметров СППД", basePath="/directories")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-@Validated
 public class ParameterController {
     @Autowired
     ParameterService parameterService;
@@ -41,7 +40,7 @@ public class ParameterController {
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    Parameter getParameterByCode(@PathVariable("code") @ApiParam(value="Код параметра") @Valid @Size(min = 1, max = 32) @NotNull String code, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    Parameter getParameterByCode(@PathVariable("code") @ApiParam(value="Код параметра") String code, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameter(code);
     }
 
