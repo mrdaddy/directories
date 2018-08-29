@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Service
-@Validated
 public class ParameterService {
     @Autowired
     private ParameterDao parameterDao;
@@ -22,7 +21,7 @@ public class ParameterService {
         return parameters;
     }
 
-    public Parameter getParameter(@Valid @NotNull @Size(min = 1, max = 32) String code) {
+    public Parameter getParameter(String code) {
         return parameterDao.getParameterByCode(code);
     }
 
