@@ -22,7 +22,7 @@ public class ParameterService {
         return parameters;
     }
 
-    public Parameter getParameter(@Valid @NotNull @Size(min = 1, max = 32) String code) {
+    public Parameter getParameter(@Valid @Size(min = 1, max = 32) @NotNull String code) {
         return parameterDao.getParameterByCode(code);
     }
 
