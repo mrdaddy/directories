@@ -4,7 +4,9 @@ import com.rw.directories.dto.Country;
 import com.rw.directories.services.CountryService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +28,7 @@ public class CountryController {
             @ApiResponse(code = 304, message = "Not Modified")
     })
 
-    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
         return countryService.getCountries(lang);
     }
-
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @Api(value="pass-countries", description="Сервис получение данных из справочника государств выдачи документа, удостоверяющего личность пассажира", tags = "Справочник государств выдачи документа, удостоверяющего личность пассажира", basePath="/pass-countries")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class PassengerCountryController {
+public class PassengerCountryController{
     @Autowired
     PassengerCountryService passengerCountryService;
 

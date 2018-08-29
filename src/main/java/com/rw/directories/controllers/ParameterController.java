@@ -43,4 +43,27 @@ public class ParameterController {
         return parameterService.getParameter(code);
     }
 
+
+    @ExceptionHandler(ConnectException.class)
+    protected com.rw.numbered.orders.dto.ErrorMessage handleConnectException(ConnectException e) {
+        return new com.rw.numbered.orders.dto.ErrorMessage("CONNECT_ERROR", e.getMessage());
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    protected com.rw.numbered.orders.dto.ErrorMessage handleDataAccessException(EmptyResultDataAccessException e) {
+        return new com.rw.numbered.orders.dto.ErrorMessage("EMPTY_RESULT", e.getMessage());
+    }
+
+    @ExceptionHandler(SQLException.class)
+    protected com.rw.numbered.orders.dto.ErrorMessage handleSQLException(SQLException e) {
+        return new com.rw.numbered.orders.dto.ErrorMessage("SQL_ERROR", e.getMessage());
+    }
+
 }
+
+
+
+
+
+
+
