@@ -13,6 +13,7 @@ public class DirectoryUpdateService {
     private DirectoryUpdateDao directoryUpdateDao;
 
     public List<DirectoryUpdate> getDirectoryUpdates() {
-        return directoryUpdateDao.getDirectoryUpdates();
+        List<DirectoryUpdate >directory = directoryUpdateDao.getDirectoryUpdates();
+        return  directory;
     }
 }

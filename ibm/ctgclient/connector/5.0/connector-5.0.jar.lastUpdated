@@ -1,0 +1,5 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Wed Sep 21 13:20:38 AST 2016
+default-http\://repo.maven.apache.org/maven2/.lastUpdated=1474453215810
+http\://repo.maven.apache.org/maven2/.error=Could not transfer artifact com.ibm.ctgclient\:connector\:jar\:5.0 from/to central (http\://repo.maven.apache.org/maven2)\: java.io.IOException\: Remotely Closed [id\: 0x000f1d4e, /172.16.15.203\:65040 \:> repo.maven.apache.org/151.101.36.215\:80]
+http\://ewa7/nexus/content/groups/public/.lastUpdated=1474453238446

@@ -1,0 +1,2 @@
+BB_IB,Internet-banking system of Belarusbank,Internet-banking,1,http://93.84.121.178/wps/PA_eTicketInquire/IbbExample,20,100100111,poezd.rw.by,http://poezd.rw.by,http://poezd.rw.by_cancel,payment_timeout=300;order_result_service=http://93.84.121.178/wps/PA_eTicketInquire/IbbExampleStatusServlet?status0;test=1,1,0,2101,1,1
+ERIP,Integrated Republican Information Payment system IRIP,Payment system Raschet ,1,http://one,20,11100101,name,http://two,http//five,check_agent=false;extra_payment_time=900,1,1,2102,0,0
