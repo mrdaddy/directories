@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApiResponses(value = {
-        @ApiResponse(code = 503, message = "Service Unavailable")
+        @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorMessage.class, responseContainer = "List")
 })
 public class BaseController {
     public enum ERROR_PREFIX {validation, system, express}

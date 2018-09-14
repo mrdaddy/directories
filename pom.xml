@@ -82,12 +82,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>ibm.db2.jcc</groupId>
+			<groupId>com.ibm.db2.jcc</groupId>
 			<artifactId>db2jcc4</artifactId>
 			<version>10.1</version>
 		</dependency>
 		<dependency>
-			<groupId>ibm.db2</groupId>
+			<groupId>com.ibm.db2</groupId>
 			<artifactId>db2jcc4_license_cu</artifactId>
 			<version>10.1</version>
 		</dependency>
@@ -196,7 +196,7 @@
 				<version>1.0.1</version>
 				<configuration>
 					<swaggerInput>${swagger.directory}/api.json</swaggerInput>
-					<outputFile>${asciidoctor.directory}/ApiDocumentation</outputFile>
+					<outputFile>${asciidoctor.directory}/directories</outputFile>
 					<config>
 						<swagger2markup.markupLanguage>ASCIIDOC</swagger2markup.markupLanguage>
 						<swagger2markup.outputLanguage>RU</swagger2markup.outputLanguage>
