@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Api(value = "erip-facilities", description = "Платежные инструменты системы “Расчет“", tags = "Справочник платежных инструментов системы “Расчет“", basePath = "/erip-facilities")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class EripFacilitiesController {
+public class EripFacilitiesController extends BaseController {
 
     @Autowired
     EripFacilitiesService eripFacilitiesService;

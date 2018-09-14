@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Api(value="countries", description="Сервис получение данных из справочника государств, в которые могут продаваться проездные документы", tags = "Справочник государств, в которые могут продаваться проездные документы", basePath="/countries")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class CountryController {
+public class CountryController extends BaseController {
 
     @Autowired
     CountryService countryService;

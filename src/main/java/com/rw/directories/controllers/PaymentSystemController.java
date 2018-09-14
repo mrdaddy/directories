@@ -4,15 +4,15 @@ import com.rw.directories.dto.PaymentSystem;
 import com.rw.directories.services.PaymentSystemService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @Api(value = "pay-systems", description = "Сервис получение данных из справочника платежных систем,  с помощью которых можно производить покупку проездныех документов", tags = "Справочник платежных систем, с помощью которых можно производить покупку проездныех документов", basePath = "/pay-systems")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class PaymentSystemController {
+public class PaymentSystemController extends BaseController {
 
     @Autowired
     PaymentSystemService paymentSystemService;

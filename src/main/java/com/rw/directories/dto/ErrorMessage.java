@@ -1,4 +1,4 @@
-package com.rw.numbered.orders.dto;
+package com.rw.directories.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
