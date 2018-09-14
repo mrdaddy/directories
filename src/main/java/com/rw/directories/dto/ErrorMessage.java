@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorMessage {
-    @ApiModelProperty(example = "NotNull.tripInformation.train", required = true, value = "Составной код ошибки. Пример NotNull - код ошибки.tripInformation - объект .train - поле (не обязательно при общей ошибке валидации)", dataType = "String")
+    @ApiModelProperty(example = "validation.NotNull.tripInformation.train", required = true, value = "Составной код ошибки. Пример NotNull - код ошибки.tripInformation - объект (только для ошибок валидации) .train - поле (только для ошибок валидации, не обязательно при общей ошибке валидации)", dataType = "String")
     private String code;
     @ApiModelProperty(example = "Не должно быть пустым", required = true, value = "Текст ошибки", dataType = "String")
     private String message;
