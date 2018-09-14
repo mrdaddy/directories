@@ -1,0 +1,23 @@
+IB,Интернет-банкинг ОАО “БПС-Сбербанк“,https://i.bps-sberbank.by
+IB,Интернет-банкинг ОАО “Белагропромбанк“,https://www.ibank.belapb.by/
+IB,Интернет-банкинг ОАО “Паритетбанк“,https://ibank.paritetbank.by/
+IB,Интернет-банкинг “Приорбанк“ ОАО,https://www.prior.by/
+IB,Интернет-банкинг ЗАО “МТБанк“,https://new.mybank.by/ib/site/login
+IB,Интернет-банкинг ЗАО “Дельта Банк“,https://deltaplus.by/ru/security/logon?ReturnUrl=%2f
+IB,Интернет-банкинг ЗАО “БТА Банк“,https://online.btabank.by/
+IB,Интернет-банкинг ОАО “Белорусский банк развития и реконструкции“ “Белинвестбанк“,https://ibank.belinvestbank.by/
+IB,Интернет-банкинг ОАО “БНБ-Банк“,https://imbanking.by/pb/
+IB,Интернет-банкинг ОАО “Белгазпромбанк“,https://www.e-bgpb.by/iPWD/!iSOU.Login
+IB,Интернет-банкинг ОАО “Хоум Кредит Банк“,https://hc24.by/netteller-postbank/LoginPage.iface
+IB,Интернет-банкинг “Франсабанк“ ОАО,https://ibank.fransabank.by/v1/cgi/bsi.dll?T=RT_2Auth.BF
+IB,Интернет-банкинг Системы Банковского Самообслуживания (СБС) *,https://www.sbsibank.by/
+EMS,EasyPay,https://ssl.easypay.by/
+EMS,WebMoney,http://www.wmtransfer.by//
+IB,Интернет-банк ЗАО ""Альфа-Банк"",https://click.alfa-bank.by/webBank/private/details.action
+IB,Интернет-банкинг ОАО “АСБ Беларусбанк”,https://ibank.asb.by
+PS,WEBPAY,https://e-pay.by/
+IB,Интернет-банкинг ЗАО ""Трастбанк"",https://tbank.trustbank.by
+IB,Интернет-банкинг ЗАО ""ИнтерПэйБанк"",https://ibank.credexbank.by/
+IB,Интернет-банк ""Идея Банк 24"",https://ideabank24.by/
+IB,Эмуляция оплаты через АИС ЕРИП,http://93.84.121.178:10039/wps/PA_eTicketInquire/faces/jsps/testErip2.html
+IB,Эмуляция оплаты через АИС ЕРИП локально,http://localhost:10039/.eTicketInquirePortlet_v3/faces/jsps/testErip2.html

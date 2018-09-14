@@ -5,6 +5,8 @@ import com.rw.directories.dto.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -25,5 +27,4 @@ public class ParameterService {
     public Parameter getParameter(@Valid @Size(min = 1, max = 32) @NotNull String code) {
         return parameterDao.getParameterByCode(code);
     }
-
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @Api(value="doc-types", description="Сервис получение данных из справочника типов документов, удостоверяющих личность пассажира", tags = "Список типов документов, удостоверяющих личность пассажира", basePath="/doc-types")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class DocumentTypeController {
+public class DocumentTypeController{
     @Autowired
     DocumentTypeService documentTypeService;
 

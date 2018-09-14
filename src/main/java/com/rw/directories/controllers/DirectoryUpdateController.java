@@ -25,7 +25,8 @@ public class DirectoryUpdateController {
             @ApiResponse(code = 304, message = "Not Modified")
     })
     List<DirectoryUpdate> getDirectoryUpdates(@RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
-        return directoryUpdateService.getDirectoryUpdates();
+        List<DirectoryUpdate> directoryUpdates = directoryUpdateService.getDirectoryUpdates();
+        return directoryUpdates;
     }
 
 

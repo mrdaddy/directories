@@ -3,9 +3,7 @@ package com.rw.directories.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor

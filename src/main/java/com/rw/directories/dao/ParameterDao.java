@@ -1,14 +1,17 @@
 package com.rw.directories.dao;
 
 import com.rw.directories.DirectoryFactory;
+import com.rw.directories.dto.Directory;
 import com.rw.directories.dto.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +22,7 @@ public class ParameterDao {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public List<Parameter> getParameters() {
+    public List<Parameter> getParameters(){
         List<Parameter> params = jdbcTemplate.query(
                 SQLQueries.PARAMS_INFO, (rs, rowNum) -> getParameter(rs));
         return params;
@@ -34,7 +37,9 @@ public class ParameterDao {
     }
 
     private Parameter getParameter(ResultSet rs) throws SQLException {
+
         Parameter parameter = DirectoryFactory.getDirectory(Parameter.class, rs);
+
         parameter.setCategory(rs.getString("TYPE"));
         parameter.setCode(rs.getString("CODE").trim());
         parameter.setValue(rs.getString("VALUE"));

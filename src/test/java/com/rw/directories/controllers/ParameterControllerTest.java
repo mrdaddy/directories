@@ -1,7 +1,5 @@
 package com.rw.directories.controllers;
 
-import com.google.common.collect.ImmutableList;
-import com.rw.directories.dao.ParameterDao;
 import com.rw.directories.dto.Parameter;
 import com.rw.directories.services.ParameterService;
 import lombok.SneakyThrows;
@@ -10,28 +8,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowCallbackHandler;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import javax.xml.transform.Result;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.BDDMockito.given;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
-import static org.hamcrest.core.Is.is;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ParameterControllerTest {
