@@ -38,8 +38,8 @@ public class SwaggerConfig {
                         "<li>− информацию об обновлениях справочников;</li>"
                         )
                 .version("v1")
-                .license("")
-                .licenseUrl("")
+                .license("БЖД")
+                .licenseUrl("https://www.rw.by/")
                 .build();
     }
 
