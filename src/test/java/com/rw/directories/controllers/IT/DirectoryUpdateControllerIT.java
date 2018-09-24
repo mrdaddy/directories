@@ -1,7 +1,8 @@
-package com.rw.directories.controllers;
+package com.rw.directories.controllers.IT;
 
-import com.rw.directories.BooleanTransformer;
+import com.rw.directories.controllers.DirectoryUpdateController;
 import com.rw.directories.dto.*;
+import com.rw.directories.utils.DBUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,7 +46,6 @@ public class DirectoryUpdateControllerIT {
     private WebApplicationContext wac;
     private RestTemplate restTemplate;
 
-    private BooleanTransformer booleanTransformer;
     private MockMvc mockMvc;
     public List<Country> countriesTrue;
     public List<DocumentType> typesTrue;
@@ -92,7 +92,6 @@ public class DirectoryUpdateControllerIT {
         this.mockMvc = webAppContextSetup(this.wac).build();
         MockMvcClientHttpRequestFactory requestFactory = new MockMvcClientHttpRequestFactory(mockMvc);
         restTemplate = new RestTemplate(requestFactory);
-        booleanTransformer = new BooleanTransformer();
         countriesTrue = new ArrayList<>();
         typesTrue = new ArrayList<>();
         parametersTrue = new ArrayList<>();
@@ -136,7 +135,7 @@ public class DirectoryUpdateControllerIT {
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             while ((strLine = br.readLine()) != null) {
                 String[] argumentsForCreateParameters = strLine.split(" ");
-                parametersTrue.add(new Parameter(argumentsForCreateParameters[0], argumentsForCreateParameters[1], argumentsForCreateParameters[2]));
+                parametersTrue.add(new Parameter(Parameter.CATEGORY.valueOf(argumentsForCreateParameters[0]), argumentsForCreateParameters[1], argumentsForCreateParameters[2]));
             }
         } catch (IOException e) {
             System.out.println("Input PARAMETERS data error. Initialization failed");
@@ -148,9 +147,9 @@ public class DirectoryUpdateControllerIT {
             while ((strLine = br.readLine()) != null) {
                 String[] argumentsForCreateDocumentType = strLine.split(" ");
                 typesTrue.add(new DocumentType(argumentsForCreateDocumentType[0],
-                        argumentsForCreateDocumentType[1], argumentsForCreateDocumentType[2],
+                        argumentsForCreateDocumentType[1], DocumentType.STATUS.valueOf(argumentsForCreateDocumentType[2]),
                         Integer.parseInt(argumentsForCreateDocumentType[3]),
-                        booleanTransformer.transformToBoolean(argumentsForCreateDocumentType[4]), argumentsForCreateDocumentType[5]));
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreateDocumentType[4])), argumentsForCreateDocumentType[5]));
             }
         } catch (IOException e) {
             System.out.println("Input DOCUMENT_TYPE data error. Initialization failed");
@@ -174,7 +173,7 @@ public class DirectoryUpdateControllerIT {
                 String[] argumentsForCreateCountry = strLine.split(" ");
                 countriesTrue.add(new Country(argumentsForCreateCountry[0],
                         argumentsForCreateCountry[1],
-                        booleanTransformer.transformToBoolean(argumentsForCreateCountry[2]),
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreateCountry[2])),
                         Integer.parseInt(argumentsForCreateCountry[3]),
                         Integer.parseInt(argumentsForCreateCountry[4])));
             }
@@ -187,13 +186,23 @@ public class DirectoryUpdateControllerIT {
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             while ((strLine = br.readLine()) != null) {
                 String[] argumentsForCreatePaySystem = strLine.split(",");
-                systemsTrue.add(new PaymentSystem(argumentsForCreatePaySystem[0],
-                        argumentsForCreatePaySystem[1], argumentsForCreatePaySystem[2],
-                        booleanTransformer.transformToBoolean(argumentsForCreatePaySystem[3]), argumentsForCreatePaySystem[4], Integer.parseInt(argumentsForCreatePaySystem[5]),
-                        argumentsForCreatePaySystem[6], argumentsForCreatePaySystem[7], argumentsForCreatePaySystem[8], argumentsForCreatePaySystem[9],
-                        argumentsForCreatePaySystem[10], booleanTransformer.transformToBoolean(argumentsForCreatePaySystem[11]),
-                        booleanTransformer.transformToBoolean(argumentsForCreatePaySystem[12]), argumentsForCreatePaySystem[13],
-                        booleanTransformer.transformToBoolean(argumentsForCreatePaySystem[14]), booleanTransformer.transformToBoolean(argumentsForCreatePaySystem[15])));
+                systemsTrue.add(new PaymentSystem(
+                        PaymentSystem.PAYMENT_SYSTEM.valueOf(argumentsForCreatePaySystem[0]),
+                        argumentsForCreatePaySystem[1],
+                        argumentsForCreatePaySystem[2],
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreatePaySystem[3])),
+                       // argumentsForCreatePaySystem[4],
+                        Integer.parseInt(argumentsForCreatePaySystem[5]),
+                        argumentsForCreatePaySystem[6],
+                        argumentsForCreatePaySystem[7],
+                        argumentsForCreatePaySystem[8],
+                        argumentsForCreatePaySystem[9],
+                       // argumentsForCreatePaySystem[10],
+                      //  DBUtils.toBoolean(Integer.parseInt(argumentsForCreatePaySystem[11])),
+                     //   DBUtils.toBoolean(Integer.parseInt(argumentsForCreatePaySystem[12])),
+                        //argumentsForCreatePaySystem[13],
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreatePaySystem[14])),
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreatePaySystem[15])), true));
             }
         } catch (IOException e) {
             System.out.println("Input PAYMENT_SYSTEMS data error. Initialization failed");
@@ -249,7 +258,7 @@ public class DirectoryUpdateControllerIT {
             namedParametersForCountry.put("code", country.getCode());
             namedParametersForCountry.put("name_en", country.getName());
             namedParametersForCountry.put("name_ru", country.getName());
-            namedParametersForCountry.put("is_global_price", booleanTransformer.transformToChar(country.isGlobalPrice()));
+            namedParametersForCountry.put("is_global_price", DBUtils.toString(country.isGlobalPrice()));
             namedParametersForCountry.put("free_ticket_age", country.getFreeTicketAge());
             namedParametersForCountry.put("children_ticket_age", country.getChildrenTicketAge());
 
@@ -280,7 +289,7 @@ public class DirectoryUpdateControllerIT {
             namedParametersForDocumentType.put("name_en", type.getName());
             namedParametersForDocumentType.put("status", type.getStatus());
             namedParametersForDocumentType.put("use_for_ET", type.getUseForET());
-            namedParametersForDocumentType.put("is_GP_used", booleanTransformer.transformToChar(type.isUsedForGlobalPrice()));
+            namedParametersForDocumentType.put("is_GP_used", DBUtils.toString(type.isUsedForGlobalPrice()));
 
             namedParameterJdbcTemplate.update(sqlInsertDocumentTypeDataInTable, namedParametersForDocumentType);
             id++;
@@ -294,19 +303,19 @@ public class DirectoryUpdateControllerIT {
             namedParameters.put("type", system.getType());
             namedParameters.put("name", system.getName());
             namedParameters.put("shortName", system.getName());
-            namedParameters.put("isDefault", booleanTransformer.transformToChar(system.isDefault()));
-            namedParameters.put("isAccessebleRU", booleanTransformer.transformToChar(system.isAccessibleRU()));
-            namedParameters.put("isAccessebleEN", booleanTransformer.transformToChar(system.isAccessibleEN()));
-            namedParameters.put("url", system.getUrl());
-            namedParameters.put("time", system.getTime());
-            namedParameters.put("systemCode", system.getSystemPayCode());
-            namedParameters.put("systemName", system.getSystemPayName());
-            namedParameters.put("systemURL", system.getSystemPayUrl());
-            namedParameters.put("systemCancelURL", system.getSystemPayCancelUrl());
-            namedParameters.put("additional", system.getAdditionalParams());
-            namedParameters.put("payAgent", system.getPayingAgent());
-            namedParameters.put("ticketReturn", booleanTransformer.transformToChar(system.isTicketReturnUnable()));
-            namedParameters.put("ticketReturnOnline", booleanTransformer.transformToChar(system.isOnlineReturnUnable()));
+            namedParameters.put("isDefault", DBUtils.toString(system.isDefault()));
+            namedParameters.put("isAccessebleRU", true);
+            namedParameters.put("isAccessebleEN", true);
+            namedParameters.put("url", "");
+            namedParameters.put("time", system.getPaymentTime());
+            namedParameters.put("systemCode", system.getEticketCode());
+            namedParameters.put("systemName", system.getEticketName());
+            namedParameters.put("systemURL", system.getPaymentSuccessUrl());
+            namedParameters.put("systemCancelURL", system.getPaymentErrorUrl());
+            namedParameters.put("additional", "");
+            namedParameters.put("payAgent", "");
+            namedParameters.put("ticketReturn", DBUtils.toString(system.isTicketReturnEnabled()));
+            namedParameters.put("ticketReturnOnline", DBUtils.toString(system.isOnlineReturnEnabled()));
 
             namedParameterJdbcTemplate.update(sqlInsertPaymentSystemDataInTable, namedParameters);
             id++;

@@ -1,7 +1,7 @@
 package com.rw.directories.controllers.IT;
 
-import com.rw.directories.BooleanTransformer;
 import com.rw.directories.dto.DocumentType;
+import com.rw.directories.utils.DBUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,6 @@ public class DocumentTypeControllerIT {
     private WebApplicationContext wac;
 
     private RestTemplate restTemplate;
-    private BooleanTransformer booleanTransformer;
     private MockMvc mockMvc;
     public List<DocumentType> typesTrue, typesFake;
 
@@ -56,7 +55,6 @@ public class DocumentTypeControllerIT {
         this.mockMvc = webAppContextSetup(this.wac).build();
         MockMvcClientHttpRequestFactory requestFactory = new MockMvcClientHttpRequestFactory(mockMvc);
         restTemplate = new RestTemplate(requestFactory);
-        booleanTransformer = new BooleanTransformer();
         typesTrue = new ArrayList<>();
         typesFake = new ArrayList<>();
         try {
@@ -66,9 +64,9 @@ public class DocumentTypeControllerIT {
             while ((strLine = br.readLine()) != null) {
                 String[] argumentsForCreateDocumentType = strLine.split(" ");
                 typesTrue.add(new DocumentType(argumentsForCreateDocumentType[0],
-                        argumentsForCreateDocumentType[1], argumentsForCreateDocumentType[2],
+                        argumentsForCreateDocumentType[1], DocumentType.STATUS.valueOf(argumentsForCreateDocumentType[2]),
                         Integer.parseInt(argumentsForCreateDocumentType[3]),
-                        booleanTransformer.transformToBoolean(argumentsForCreateDocumentType[4]), argumentsForCreateDocumentType[5]));
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreateDocumentType[4])), argumentsForCreateDocumentType[5]));
             }
         } catch (IOException e) {
             System.out.println("Input DOCUMENT_TYPE data error. Initialization failed");
@@ -102,7 +100,7 @@ public class DocumentTypeControllerIT {
             namedParameters.put("STATUS", type.getStatus());
             namedParameters.put("USE_FOR_ET", type.getUseForET());
 
-            namedParameters.put("IS_GP_USED", booleanTransformer.transformToChar(type.isUsedForGlobalPrice()));
+            namedParameters.put("IS_GP_USED", DBUtils.toString(type.isUsedForGlobalPrice()));
             namedParameterJdbcTemplate.update(sqlInsertDataInTable, namedParameters);
             id++;
         }

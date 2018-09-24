@@ -14,4 +14,13 @@ public class DBUtils {
             return false;
         }
     }
+
+    public static String toString(boolean value) {
+        if(value) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
+
 }

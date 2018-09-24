@@ -108,7 +108,7 @@ public class PassengerCountryControllerIT {
                 "/" + version + "/directories/pass-countries?lang=en&inm=test", PassengerCountry[].class);
         passengersFake = Arrays.asList(passengerCountries.getBody());
 
-        Collections.sort(passengersTrue, PassengerCountry.passengerCountryNameComparator);
+        //Collections.sort(passengersTrue, PassengerCountry.passengerCountryNameComparator);
 
         boolean check = true;
 

@@ -2,6 +2,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.PaymentSystem;
 import com.rw.directories.services.PaymentSystemService;
+import com.rw.directories.utils.LanguageUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,19 +28,17 @@ import static org.mockito.Mockito.when;
         public void setUp() {
             systemsFake = new ArrayList<>();
             systemsTrue = new ArrayList<>();
-            systemsTrue.add(new PaymentSystem("TYPE","NAME","SN",true,"url",
-                    15,"1001011","payName","payURL","payCancelURL","test",true,
-                    false,"agent",true, false));
-            systemsTrue.add(new PaymentSystem("ERIP", "rasschet", "erip", true, "url",
-                    15, "1938403", "erip", "payURL", "payCancelURL", "test", true,
-                    false, "agent", true, false));
+            systemsTrue.add(new PaymentSystem(PaymentSystem.PAYMENT_SYSTEM.valueOf("ERIP"), "NAME", "SHORTNAME",  true,
+                    15, "1001011", "payName", "payURL", "payCancelURL",  true, false, true));
+            systemsTrue.add(new PaymentSystem(PaymentSystem.PAYMENT_SYSTEM.valueOf("ERIP"), "ERIP", "rasschet", true,
+                    15, "1938403", "erip", "payURL", "payCancelURL", true, false, true));
 
         }
 
         @Test
         public void getPaymentSystems() {
             when(paymentSystemService.getPaymentSystem("EN")).thenReturn(systemsTrue);
-            systemsFake = paymentSystemController.getPaymentSystem("EN","test");
+            systemsFake = paymentSystemController.getPaymentSystem(LanguageUtils.SUPPORTED_LANGUAGES.valueOf("en"),"test");
             assertTrue(systemsFake.equals(systemsTrue));
         }
 

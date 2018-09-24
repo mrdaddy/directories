@@ -2,6 +2,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.Country;
 import com.rw.directories.services.CountryService;
+import com.rw.directories.utils.LanguageUtils;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -27,7 +28,7 @@ public class CountryController extends BaseController {
             @ApiResponse(code = 304, message = "Not Modified")
     })
 
-    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
-        return countryService.getCountries(lang);
+    public List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа", required = true) LanguageUtils.SUPPORTED_LANGUAGES lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
+        return countryService.getCountries(lang.toString());
     }
 }

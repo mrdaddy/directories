@@ -19,6 +19,7 @@ public class DirectoryUpdateDao {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<DirectoryUpdate> getDirectoryUpdates() {
+
         List<DirectoryUpdate>  directoryUpdates = jdbcTemplate.query(
                 SQLQueries.DIRECTORY_UPDATES_INFO, (rs, rowNum) -> getDirectoryUpdate(rs));
         return directoryUpdates;

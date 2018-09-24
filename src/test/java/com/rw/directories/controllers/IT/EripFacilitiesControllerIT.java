@@ -1,9 +1,7 @@
 package com.rw.directories.controllers.IT;
 
 
-        import com.rw.directories.BooleanTransformer;
         import com.rw.directories.dto.EripFacilities;
-        import com.rw.directories.dto.PaymentSystem;
         import org.junit.Before;
         import org.junit.Test;
         import org.junit.runner.RunWith;
@@ -45,7 +43,6 @@ public class EripFacilitiesControllerIT {
 
     private RestTemplate restTemplate;
 
-    private BooleanTransformer booleanTransformer;
     private MockMvc mockMvc;
     public List<EripFacilities> facilitiesTrue, facilitiesFake;
 
@@ -58,7 +55,6 @@ public class EripFacilitiesControllerIT {
         this.mockMvc = webAppContextSetup(this.wac).build();
         MockMvcClientHttpRequestFactory requestFactory = new MockMvcClientHttpRequestFactory(mockMvc);
         restTemplate = new RestTemplate(requestFactory);
-        booleanTransformer = new BooleanTransformer();
         facilitiesFake = new ArrayList<>();
         facilitiesTrue = new ArrayList<>();
 

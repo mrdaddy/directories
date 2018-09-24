@@ -4,6 +4,7 @@ import com.rw.directories.dto.DirectoryUpdate;
 import com.rw.directories.dto.PassengerCountry;
 import com.rw.directories.services.DirectoryUpdateService;
 import com.rw.directories.services.PassengerCountryService;
+import com.rw.directories.utils.LanguageUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public class PassengerCountryControllerTest {
     public void getPassengerCountries(){
 
         when(passengerCountryService.getPassengerCountries(lang)).thenReturn(passengerCountriesTrue);
-        passengerCountriesFake = passengerCountryController.getPassengerCountries(lang,mock);
+        passengerCountriesFake = passengerCountryController.getPassengerCountries(LanguageUtils.SUPPORTED_LANGUAGES.valueOf(lang),mock);
         assertTrue(passengerCountriesTrue.equals(passengerCountriesFake));
 
     }

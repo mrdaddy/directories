@@ -40,7 +40,7 @@ public class ParameterDao {
 
         Parameter parameter = DirectoryFactory.getDirectory(Parameter.class, rs);
 
-        parameter.setCategory(rs.getString("TYPE"));
+        parameter.setCategory(Parameter.CATEGORY.valueOf(rs.getString("TYPE")));
         parameter.setCode(rs.getString("CODE").trim());
         parameter.setValue(rs.getString("VALUE"));
         return parameter;

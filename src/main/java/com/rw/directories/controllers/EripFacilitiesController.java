@@ -26,7 +26,7 @@ public class EripFacilitiesController extends BaseController {
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<EripFacilities> getEripFacilities(@RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
+    public List<EripFacilities> getEripFacilities(@RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
         return eripFacilitiesService.getEripFacilities();
     }
 }

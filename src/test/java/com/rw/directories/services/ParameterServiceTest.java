@@ -29,9 +29,9 @@ public class ParameterServiceTest {
     public void setUp() {
         parametersTrue = new ArrayList<>();
         parametersFake = new ArrayList<>();
-        parametersTrue.add(new Parameter("T","TEST_CODE","Test value"));
-        parametersTrue.add(new Parameter("T","TEST_CODE2","Test value 2"));
-        parametersTrue.add(new Parameter("M","TEST_CODE3","Test value 3"));
+        parametersTrue.add(new Parameter(Parameter.CATEGORY.T,"TEST_CODE","Test value"));
+        parametersTrue.add(new Parameter(Parameter.CATEGORY.T,"TEST_CODE2","Test value 2"));
+        parametersTrue.add(new Parameter(Parameter.CATEGORY.M,"TEST_CODE3","Test value 3"));
     }
 
 

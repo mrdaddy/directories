@@ -2,6 +2,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.DocumentType;
 import com.rw.directories.services.DocumentTypeService;
+import com.rw.directories.utils.LanguageUtils;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,7 +25,7 @@ public class DocumentTypeController extends BaseController{
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<DocumentType> getDocumentTypes(@RequestParam @ApiParam(value="Язык ответа") String lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
-        return documentTypeService.getDocumentTypes(lang);
+    public List<DocumentType> getDocumentTypes(@RequestParam @ApiParam(value="Язык ответа", required = true) LanguageUtils.SUPPORTED_LANGUAGES lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+        return documentTypeService.getDocumentTypes(lang.toString());
     }
 }

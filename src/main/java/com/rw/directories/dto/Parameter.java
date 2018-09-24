@@ -10,8 +10,18 @@ import lombok.*;
 @NoArgsConstructor
 @ApiModel(description = "Параметр СППД")
 public class Parameter extends Directory {
-    @ApiModelProperty(example = "T", required = true, allowableValues = "E, G, M, P, R, S, T", value = "Тип параметра  (код)", dataType = "String", notes="G – общие параметры, S – параметры для получения расписания, T – параметры для покупки билетов,\tR – параметры для возврата,\tP – параметры для взаимодействия с платежными системами, E – параметры для взаимодействия с “ССПД-Экспресс”, M – параметры для отправки писем, U - параметры для ведения пользователей")
-    private String category;
+    public enum CATEGORY {E, G, M, P, R, S, T}
+
+    @ApiModelProperty(example = "T", required = true, allowableValues = "E, G, M, P, R, S, T, U", value = "Тип параметра - код. Значения: " +
+            "G – общие параметры, " +
+            "S – параметры для получения расписания, " +
+            "T – параметры для покупки билетов, " +
+            "R – параметры для возврата, " +
+            "P – параметры для взаимодействия с платежными системами, " +
+            "E – параметры для взаимодействия с “ССПД-Экспресс”, " +
+            "M – параметры для отправки писем, " +
+            "U - параметры для ведения пользователей", dataType = "String")
+    private CATEGORY category;
 
     @ApiModelProperty(example = "TICKET_PASSENGER_COUNT", required = true, value = "Код параметра в СППД", dataType = "String")
     private String code;

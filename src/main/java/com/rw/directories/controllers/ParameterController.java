@@ -12,12 +12,12 @@ import java.util.List;
 
 @RestController
 @Api(value="parameters", description="Сервис получение данных из справочника параметров СППД", tags = "Справочник параметров СППД", basePath="/directories")
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/${service.version}/directories/parameters", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ParameterController extends BaseController {
     @Autowired
     ParameterService parameterService;
 
-    @RequestMapping(path = "/${service.version}/directories/parameters", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Получение справочника параметров СППД")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
@@ -25,11 +25,11 @@ public class ParameterController extends BaseController {
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<Parameter> getParameters(@RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    public List<Parameter> getParameters(@RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameters();
     }
 
-    @RequestMapping(path = "/${service.version}/directories/parameter/{code}", method = RequestMethod.GET)
+    @RequestMapping(path = "/${service.version}/directories/parameters/{code}", method = RequestMethod.GET)
     @ApiOperation(value = "Параметр СППД по коду")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
@@ -38,7 +38,8 @@ public class ParameterController extends BaseController {
             @ApiResponse(code = 304, message = "Not Modified"),
             @ApiResponse(code = 400, message = "Bad request", response = ErrorMessage.class, responseContainer = "List"),
     })
-    Parameter getParameterByCode(@PathVariable("code") @ApiParam(value = "Код параметра") String code, @RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    public Parameter getParameterByCode(@PathVariable("code") @ApiParam(value = "Код параметра") String code,
+                                 @RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameter(code);
     }
 

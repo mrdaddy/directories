@@ -1,7 +1,7 @@
 package com.rw.directories.controllers.IT;
 
-import com.rw.directories.BooleanTransformer;
 import com.rw.directories.dto.Country;
+import com.rw.directories.utils.DBUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,6 @@ public class CountryControllerIT {
     private WebApplicationContext wac;
 
     private RestTemplate restTemplate;
-    private BooleanTransformer booleanTransformer;
 
     private MockMvc mockMvc;
     public List<Country> countriesTrue, countriesFake;
@@ -56,7 +55,6 @@ public class CountryControllerIT {
         this.mockMvc = webAppContextSetup(this.wac).build();
         MockMvcClientHttpRequestFactory requestFactory = new MockMvcClientHttpRequestFactory(mockMvc);
         restTemplate = new RestTemplate(requestFactory);
-        booleanTransformer = new BooleanTransformer();
         countriesTrue = new ArrayList<>();
         countriesFake = new ArrayList<>();
         try {
@@ -67,7 +65,7 @@ public class CountryControllerIT {
                 String[] argumentsForCreateCountry = strLine.split(" ");
                 countriesTrue.add(new Country(argumentsForCreateCountry[0],
                         argumentsForCreateCountry[1],
-                        booleanTransformer.transformToBoolean(argumentsForCreateCountry[2]),
+                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreateCountry[2])),
                         Integer.parseInt(argumentsForCreateCountry[3]),
                         Integer.parseInt(argumentsForCreateCountry[4])));
             }
@@ -97,7 +95,7 @@ public class CountryControllerIT {
             namedParameters.put("CODE", country.getCode());
             namedParameters.put("NAME_EN", country.getName());
             namedParameters.put("NAME_RU", country.getName());
-            namedParameters.put("IS_GLOBAL_PRICE", booleanTransformer.transformToChar(country.isGlobalPrice()));
+            namedParameters.put("IS_GLOBAL_PRICE", DBUtils.toString(country.isGlobalPrice()));
             namedParameters.put("FREE_TICKET_AGE", country.getFreeTicketAge());
             namedParameters.put("CHILDREN_TICKET_AGE", country.getChildrenTicketAge());
 

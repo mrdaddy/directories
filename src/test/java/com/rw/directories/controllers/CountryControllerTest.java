@@ -2,6 +2,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.Country;
 import com.rw.directories.services.CountryService;
+import com.rw.directories.utils.LanguageUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public class CountryControllerTest {
     public void getCountries(){
 
         when(countryService.getCountries(lang)).thenReturn(countriesTrue);
-        countriesFake = countryController.getCountries(lang,mock);
+        countriesFake = countryController.getCountries(LanguageUtils.SUPPORTED_LANGUAGES.valueOf(lang),mock);
         assertTrue(countriesFake.equals(countriesTrue));
     }
 

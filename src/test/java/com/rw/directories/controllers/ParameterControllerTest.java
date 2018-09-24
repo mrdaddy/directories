@@ -30,9 +30,9 @@ public class ParameterControllerTest {
     @Before
     public void setUp() {
         testPars = new ArrayList<>();
-        testPars.add(new Parameter("T","TEST_CODE","Test value"));
-        testPars.add(new Parameter("T","TEST_CODE2","Test value 2"));
-        testPars.add(new Parameter("M","TEST_CODE3","Test value 3"));
+        testPars.add(new Parameter(Parameter.CATEGORY.T,"TEST_CODE","Test value"));
+        testPars.add(new Parameter(Parameter.CATEGORY.T,"TEST_CODE2","Test value 2"));
+        testPars.add(new Parameter(Parameter.CATEGORY.M,"TEST_CODE3","Test value 3"));
     }
 
     @Test

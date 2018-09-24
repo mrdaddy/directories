@@ -68,7 +68,7 @@ public class ParameterControllerIT {
             String strLine;
             while ((strLine = br.readLine()) != null){
                 String[] argumentsForCreateParameters = strLine.split(" ");
-                parametersTrue.add(new Parameter(argumentsForCreateParameters[0], argumentsForCreateParameters[1],argumentsForCreateParameters[2]));
+                parametersTrue.add(new Parameter(Parameter.CATEGORY.valueOf(argumentsForCreateParameters[0]), argumentsForCreateParameters[1],argumentsForCreateParameters[2]));
             }
         }catch (IOException e){
             System.out.println("Input PARAMETERS data error. Initialization failed");
@@ -199,7 +199,7 @@ public class ParameterControllerIT {
             try {
                 returnedParameter = restTemplate.getForEntity(url, Parameter.class).getBody();
             } catch (HttpClientErrorException e) {
-                returnedParameter = new Parameter( "", "EMPTY_RESULT", "");
+                returnedParameter = new Parameter(Parameter.CATEGORY.E, "EMPTY_RESULT", "");
             }
 
         } else {
