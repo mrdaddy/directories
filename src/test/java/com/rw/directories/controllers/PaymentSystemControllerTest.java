@@ -4,6 +4,7 @@ import com.rw.directories.dto.PaymentSystem;
 import com.rw.directories.services.PaymentSystemService;
 import com.rw.directories.utils.LanguageUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
     @RunWith(MockitoJUnitRunner.class)
+    @Ignore
     public class PaymentSystemControllerTest {
         @Mock
         private PaymentSystemService paymentSystemService;

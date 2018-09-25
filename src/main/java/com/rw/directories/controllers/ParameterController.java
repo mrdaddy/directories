@@ -29,7 +29,7 @@ public class ParameterController extends BaseController {
         return parameterService.getParameters();
     }
 
-    @RequestMapping(path = "/${service.version}/directories/parameters/{code}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{code}", method = RequestMethod.GET)
     @ApiOperation(value = "Параметр СППД по коду")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
@@ -38,7 +38,7 @@ public class ParameterController extends BaseController {
             @ApiResponse(code = 304, message = "Not Modified"),
             @ApiResponse(code = 400, message = "Bad request", response = ErrorMessage.class, responseContainer = "List"),
     })
-    public Parameter getParameterByCode(@PathVariable("code") @ApiParam(value = "Код параметра") String code,
+    public Parameter getParameterByCode(@PathVariable("code") @ApiParam(value = "Код параметра", required = true) String code,
                                  @RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return parameterService.getParameter(code);
     }

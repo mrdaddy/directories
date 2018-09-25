@@ -3,6 +3,7 @@ package com.rw.directories.controllers.IT;
 import com.rw.directories.dto.DocumentType;
 import com.rw.directories.utils.DBUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class DocumentTypeControllerIT {
 
     @Value("${service.version}")
