@@ -35,8 +35,8 @@ public class DirectoryUpdateControllerTest {
         date = new Date();
         mock = new String("test");
         directoryUpdatesTrue = new ArrayList<>();
-        directoryUpdatesTrue.add(new DirectoryUpdate("test", date));
-        directoryUpdatesTrue.add(new DirectoryUpdate("test2", date));
+        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Parameters"), date));
+        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Countries"), date));
 
     }
 

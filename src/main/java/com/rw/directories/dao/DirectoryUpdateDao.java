@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.rw.directories.utils.DBUtils.formatQueryWithParams;
 
@@ -19,7 +21,6 @@ public class DirectoryUpdateDao {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<DirectoryUpdate> getDirectoryUpdates() {
-
         List<DirectoryUpdate>  directoryUpdates = jdbcTemplate.query(
                 SQLQueries.DIRECTORY_UPDATES_INFO, (rs, rowNum) -> getDirectoryUpdate(rs));
         return directoryUpdates;
@@ -27,7 +28,7 @@ public class DirectoryUpdateDao {
 
     private DirectoryUpdate getDirectoryUpdate(ResultSet rs) throws SQLException {
         DirectoryUpdate directoryUpdate = new DirectoryUpdate();
-        directoryUpdate.setDirectory(rs.getString("DIRECTORY"));
+        directoryUpdate.setDirectory(DirectoryUpdate.DIRECTORY.valueOf(rs.getString("DIRECTORY")));
         directoryUpdate.setLastUpdatedOn(rs.getTimestamp("UPDATED_ON"));
         return directoryUpdate;
     }

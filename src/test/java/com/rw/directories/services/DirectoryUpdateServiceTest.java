@@ -34,8 +34,8 @@ public class DirectoryUpdateServiceTest {
 
         date = new Date();
         directoryUpdatesTrue = new ArrayList<>();
-        directoryUpdatesTrue.add(new DirectoryUpdate("TEST", date));
-        directoryUpdatesTrue.add(new DirectoryUpdate("TEST_2", date));
+        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Parameters"), date));
+        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Countries"), date));
     }
 
 

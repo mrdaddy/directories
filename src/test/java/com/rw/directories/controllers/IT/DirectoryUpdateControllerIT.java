@@ -338,9 +338,9 @@ public class DirectoryUpdateControllerIT {
     @Test
     public void testGetParametersList() {
 
-        updatesTrue = directoryUpdateController.getDirectoryUpdates("test");
+        updatesTrue = directoryUpdateController.getDirectoryUpdates("Parameters");
         updatesFake = Arrays.asList(restTemplate.getForEntity( /////ЛОВИТ EXCEPTION
-                "/" + version + "/directories/dir-updates?inm=test", DirectoryUpdate[].class).getBody());
+                "/" + version + "/directories/dir-updates?inm=Parameters", DirectoryUpdate[].class).getBody());
 
 
         boolean check = true;
