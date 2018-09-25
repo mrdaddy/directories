@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @ApiModel(description = "Параметр СППД")
 public class Parameter extends Directory {
-    public enum CATEGORY {E, G, M, P, R, S, T}
+    public enum CATEGORY {E, G, M, P, R, S, T, U}
 
     @ApiModelProperty(example = "T", required = true, allowableValues = "E, G, M, P, R, S, T, U", value = "Тип параметра - код. Значения: " +
             "G – общие параметры, " +
