@@ -1,10 +1,13 @@
 package com.rw.directories.utils;
 
 public class LanguageUtils {
-    public enum SUPPORTED_LANGUAGES {ru, en, by}
-    private static final String DEFAULT_LANG = "ru";
+    public enum SUPPORTED_LANGUAGES {ru, en, be}
+    private static final SUPPORTED_LANGUAGES DEFAULT_LANG = SUPPORTED_LANGUAGES.ru;
     public static String convertToSupportedLang(String lang) {
-        String supportedLang = SUPPORTED_LANGUAGES.valueOf(lang.toLowerCase()) != null? lang : DEFAULT_LANG;
+        if( SUPPORTED_LANGUAGES.valueOf(lang) == null) {
+            lang = SUPPORTED_LANGUAGES.ru.toString();
+        }
+        String supportedLang = lang;
         return supportedLang;
     }
 }
