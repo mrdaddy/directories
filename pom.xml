@@ -118,6 +118,13 @@
 		</dependency> -->
 
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>localrep</id>
+			<name>local repository</name>
+			<url>file:${project.basedir}/lib</url>
+		</repository>
+	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>jcenter-snapshots</id>
