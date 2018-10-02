@@ -152,7 +152,7 @@
 
 	<profiles>
 		<profile>
-		<id>prod</id>
+		<id>openshift</id>
 		<activation>
 			<activeByDefault>true</activeByDefault>
 		</activation>
