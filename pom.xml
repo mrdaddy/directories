@@ -34,6 +34,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
@@ -82,14 +87,14 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.ibm.db2.jcc</groupId>
+			<groupId>ibm.db2.jcc</groupId>
 			<artifactId>db2jcc4</artifactId>
 			<version>10.1</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/com/ibm/db2/jcc/db2jcc4/10.1/db2jcc4-10.1.jar</systemPath>
 		</dependency>
 		<dependency>
-			<groupId>com.ibm.db2</groupId>
+			<groupId>ibm.db2</groupId>
 			<artifactId>db2jcc4_license_cu</artifactId>
 			<version>10.1</version>
 			<scope>system</scope>
@@ -115,6 +120,13 @@
 			<artifactId>guava</artifactId>
 			<version>26.0-jre</version>
 		</dependency>
+		<dependency>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+			<version>0.0.20131108.vaadin1</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- <dependency>
 			<groupId>com.openshift</groupId>
 			<artifactId>openshift-restclient-java</artifactId>

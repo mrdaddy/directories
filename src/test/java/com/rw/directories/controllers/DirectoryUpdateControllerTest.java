@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,17 +27,17 @@ public class DirectoryUpdateControllerTest {
     private DirectoryUpdateController directoryUpdateController;
     private List<DirectoryUpdate> directoryUpdatesTrue;
     private List<DirectoryUpdate> directoryUpdatesFake;
-    private Date date;
+    private Timestamp timestamp;
     private String mock;
 
 @Before
     public void setUp(){
 
-        date = new Date();
+        timestamp = Timestamp.valueOf("2018-08-25 11:38:38.7640300");
         mock = new String("test");
         directoryUpdatesTrue = new ArrayList<>();
-        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Parameters"), date));
-        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Countries"), date));
+        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Parameters"), timestamp));
+        directoryUpdatesTrue.add(new DirectoryUpdate(DirectoryUpdate.DIRECTORY.valueOf("Countries"), timestamp));
 
     }
 

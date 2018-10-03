@@ -16,7 +16,6 @@ public class EripFacilitiesService {
 
     public List<EripFacilities> getEripFacilities() {
         return eripFacilitiesDao.getEripFacilities();
-       // return facilities; List<EripFacilities> facilities
     }
 
 }

@@ -2,6 +2,7 @@ package com.rw.directories.controllers.IT;
 
 import com.rw.directories.dto.DocumentType;
 import com.rw.directories.utils.DBUtils;
+import org.json.JSONArray;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -31,7 +32,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
+
 public class DocumentTypeControllerIT {
 
     @Value("${service.version}")
@@ -48,8 +49,8 @@ public class DocumentTypeControllerIT {
     private MockMvc mockMvc;
     public List<DocumentType> typesTrue, typesFake;
 
-    private static final String PATH_DOCUMENT_TYPE_SQL = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/SQLforTest/CreateTableForDocumentTypeIT";
-    private static final String PATH_DOCUMENT_TYPE_DATA = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/DataForDocumentTypeIT";
+    private static final String PATH_DOCUMENT_TYPE_SQL = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/SQLforTest/CreateTableForDocumentTypeIT";
+    private static final String PATH_DOCUMENT_TYPE_DATA = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/DataForDocumentTypeIT";
 
     @Before
     public void setUp() throws IOException {
@@ -63,12 +64,24 @@ public class DocumentTypeControllerIT {
             FileInputStream fstream = new FileInputStream(PATH_DOCUMENT_TYPE_DATA);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
+            StringBuilder builder = new StringBuilder();
             while ((strLine = br.readLine()) != null) {
-                String[] argumentsForCreateDocumentType = strLine.split(" ");
-                typesTrue.add(new DocumentType(argumentsForCreateDocumentType[0],
-                        argumentsForCreateDocumentType[1], DocumentType.STATUS.valueOf(argumentsForCreateDocumentType[2]),
-                        Integer.parseInt(argumentsForCreateDocumentType[3]),
-                        DBUtils.toBoolean(Integer.parseInt(argumentsForCreateDocumentType[4])), argumentsForCreateDocumentType[5]));
+                builder.append(strLine);
+            }
+
+            JSONArray jsonArray = new JSONArray(builder.toString());
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                DocumentType docType = new DocumentType();
+                docType.setCode(jsonArray.getJSONObject(i).getString("code"));
+                docType.setName(jsonArray.getJSONObject(i).getString("name"));
+                docType.setStatus(DocumentType.STATUS.valueOf(jsonArray.getJSONObject(i).getString("status")));
+                docType.setUseForET(jsonArray.getJSONObject(i).getInt("useForET"));
+                docType.setUsedForGlobalPrice(jsonArray.getJSONObject(i).getBoolean("usedForGlobalPrice"));
+                docType.setExpressCode(jsonArray.getJSONObject(i).getString("expressCode"));
+
+                typesTrue.add(docType);
             }
         } catch (IOException e) {
             System.out.println("Input DOCUMENT_TYPE data error. Initialization failed");
@@ -88,23 +101,20 @@ public class DocumentTypeControllerIT {
 
         String sqlInsertDataInTable;
 
-        int id = 1;
         for (DocumentType type : typesTrue) {
-            sqlInsertDataInTable = "INSERT INTO ETICKET.DOCUMENT_TYPES(ID , CODE, EXPRESS_CODE , NAME_RU , NAME_EN, STATUS, USE_FOR_ET, IS_GP_USED) " +
-                    " VALUES (:ID, :CODE ,:EXPRESS_CODE , :NAME_EN , :NAME_EN , :STATUS , :USE_FOR_ET , :IS_GP_USED)";
+            sqlInsertDataInTable = "INSERT INTO ETICKET.DOCUMENT_TYPES( CODE, EXPRESS_CODE , NAME_RU , NAME_EN, STATUS, USE_FOR_ET, IS_GP_USED) " +
+                    " VALUES (:CODE ,:EXPRESS_CODE , :NAME_EN , :NAME_EN , :STATUS , :USE_FOR_ET , :IS_GP_USED)";
 
             Map namedParameters = new HashMap();
 
-            namedParameters.put("ID", id);
             namedParameters.put("CODE", type.getCode());
             namedParameters.put("EXPRESS_CODE", type.getExpressCode());
             namedParameters.put("NAME_EN", type.getName());
-            namedParameters.put("STATUS", type.getStatus());
+            namedParameters.put("STATUS", type.getStatus().toString());
             namedParameters.put("USE_FOR_ET", type.getUseForET());
 
             namedParameters.put("IS_GP_USED", DBUtils.toString(type.isUsedForGlobalPrice()));
             namedParameterJdbcTemplate.update(sqlInsertDataInTable, namedParameters);
-            id++;
         }
     }
 

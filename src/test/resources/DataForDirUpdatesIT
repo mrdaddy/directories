@@ -1,0 +1,22 @@
+[
+  {
+    "directory": "DocumentTypes",
+    "lastUpdatedOn": "2018-09-14 14:29:33.2330300"
+  },
+  {
+    "directory": "PassengerCountries",
+    "lastUpdatedOn": "2018-09-14 17:36:20.1180300"
+  },
+  {
+    "directory": "Countries",
+    "lastUpdatedOn": "2018-09-18 17:04:35.7900300"
+  },
+  {
+    "directory": "PaymentSystems",
+    "lastUpdatedOn": "2018-09-19 11:11:11.2710300"
+  },
+  {
+    "directory": "Parameters",
+    "lastUpdatedOn": "2018-09-21 13:17:42.2260300"
+  }
+]

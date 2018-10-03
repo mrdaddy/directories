@@ -59,7 +59,7 @@ public class BaseController {
     @ExceptionHandler(SQLException.class)
     protected ResponseEntity<?> handleSQLException(SQLException e) {
         List<ErrorMessage> errors = new ArrayList<>();
-        errors.add(new ErrorMessage(ERROR_PREFIX.system+".database_error", e.getMessage()));
+        errors.add(new ErrorMessage(ERROR_PREFIX.system + ".database_error", e.getMessage()));
         return new ResponseEntity(errors, HttpStatus.SERVICE_UNAVAILABLE);
     }
 

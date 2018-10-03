@@ -1,6 +1,8 @@
 package com.rw.directories.controllers.IT;
 
+import com.rw.directories.dto.Country;
 import com.rw.directories.dto.Parameter;
+import org.json.JSONArray;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -34,11 +36,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class ParameterControllerIT {
 
-    private static final String PATH_PARAMETER_SQL = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/SQLforTest/CreateTableForParameterIT";
-    private static final String PATH_PARAMETER_DATA = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/DataForParameterIT";
+    private static final String PATH_PARAMETER_SQL = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/SQLforTest/CreateTableForParameterIT";
+    private static final String PATH_PARAMETER_DATA = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/DataForParameterIT";
 
     @Value("${service.version}")
     String version;
@@ -64,13 +65,22 @@ public class ParameterControllerIT {
         parametersTrue = new ArrayList<>();
         parametersFake = new ArrayList<>();
 
-        try{
+        try {
             FileInputStream fstream = new FileInputStream(PATH_PARAMETER_DATA);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
-            while ((strLine = br.readLine()) != null){
-                String[] argumentsForCreateParameters = strLine.split(" ");
-                parametersTrue.add(new Parameter(Parameter.CATEGORY.valueOf(argumentsForCreateParameters[0]), argumentsForCreateParameters[1],argumentsForCreateParameters[2]));
+            StringBuilder builder = new StringBuilder();
+            while ((strLine = br.readLine()) != null) {
+                builder.append(strLine);
+            }
+            JSONArray jsonArray = new JSONArray(builder.toString());
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                Parameter parameter = new Parameter();
+                parameter.setCode(jsonArray.getJSONObject(i).getString("code"));
+                parameter.setValue(jsonArray.getJSONObject(i).getString("value"));
+                parameter.setCategory(Parameter.CATEGORY.valueOf(jsonArray.getJSONObject(i).getString("category")));
             }
         }catch (IOException e){
             System.out.println("Input PARAMETERS data error. Initialization failed");
