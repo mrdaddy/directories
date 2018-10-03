@@ -6,7 +6,7 @@
 	<groupId>com.rw</groupId>
 	<artifactId>directories</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>directories</name>
 	<description>SPPD directories</description>
@@ -48,12 +48,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -121,12 +115,6 @@
 			<artifactId>guava</artifactId>
 			<version>26.0-jre</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- <dependency>
 			<groupId>com.openshift</groupId>
 			<artifactId>openshift-restclient-java</artifactId>
@@ -134,24 +122,6 @@
 		</dependency> -->
 
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<outputDirectory>target</outputDirectory>
-					<warName>ROOT</warName>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>jcenter-snapshots</id>
@@ -167,13 +137,26 @@
 			<url>http://jcenter.bintray.com</url>
 		</pluginRepository>
 	</pluginRepositories>
+	<build>
+
+	<plugins>
+	<plugin>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-maven-plugin</artifactId>
+		<configuration>
+			<executable>true</executable>
+		</configuration>
+	</plugin>
+	</plugins>
+	</build>
 
 	<profiles>
 		<profile>
-		<id>openshift</id>
+		<id>prod</id>
 		<activation>
 			<activeByDefault>true</activeByDefault>
 		</activation>
+
 
 		</profile>
 
