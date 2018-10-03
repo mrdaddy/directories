@@ -1,3 +1,90 @@
-ПБ Belarus A 7 1 1110
-ПБ Belgium B 6 0 1001
-ПБ Russia A 8 1 1101
+[{
+    "id": 1,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "ПБ",
+    "name": "Паспорт Республики Беларусь",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "ПБ",
+    "usedForGlobalPrice": true
+  },
+  {
+    "id": 2,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "ПН",
+    "name": "Паспорт Российской Федерации (новый)",
+    "status": "A",
+    "useForET": 2,
+    "expressCode": "ПН",
+    "usedForGlobalPrice": false
+  },
+  {
+    "id": 3,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "ЗП",
+    "name": "Заграничный паспорт Российской Федерации",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "ЗП",
+    "usedForGlobalPrice": true
+  },
+  {
+    "id": 5,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "ПМ",
+    "name": "Паспорт моряка",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "ПМ",
+    "usedForGlobalPrice": false
+  },
+  {
+    "id": 6,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "СР",
+    "name": "Свидетельство о рождении",
+    "status": "A",
+    "useForET": 7,
+    "expressCode": "СР",
+    "usedForGlobalPrice": false
+  },
+  {
+    "id": 7,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "ВБ",
+    "name": "Военный билет",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "ВБ",
+    "usedForGlobalPrice": false
+  },
+  {
+    "id": 8,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "УЛ",
+    "name": "Удостоверение личности",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "УЛ",
+    "usedForGlobalPrice": false
+  },
+  {
+    "id": 9,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "СУ",
+    "name": "Справка об утере паспорта",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "СУ",
+    "usedForGlobalPrice": false
+  },
+  {
+    "id": 10,
+    "updatedOn": "2018-09-14 14:29:33.2330300",
+    "code": "СО",
+    "name": "Справка об освобождении",
+    "status": "A",
+    "useForET": 1,
+    "expressCode": "СО",
+    "usedForGlobalPrice": false
+  }]

@@ -1,23 +1,112 @@
-IB,Интернет-банкинг ОАО “БПС-Сбербанк“,https://i.bps-sberbank.by
-IB,Интернет-банкинг ОАО “Белагропромбанк“,https://www.ibank.belapb.by/
-IB,Интернет-банкинг ОАО “Паритетбанк“,https://ibank.paritetbank.by/
-IB,Интернет-банкинг “Приорбанк“ ОАО,https://www.prior.by/
-IB,Интернет-банкинг ЗАО “МТБанк“,https://new.mybank.by/ib/site/login
-IB,Интернет-банкинг ЗАО “Дельта Банк“,https://deltaplus.by/ru/security/logon?ReturnUrl=%2f
-IB,Интернет-банкинг ЗАО “БТА Банк“,https://online.btabank.by/
-IB,Интернет-банкинг ОАО “Белорусский банк развития и реконструкции“ “Белинвестбанк“,https://ibank.belinvestbank.by/
-IB,Интернет-банкинг ОАО “БНБ-Банк“,https://imbanking.by/pb/
-IB,Интернет-банкинг ОАО “Белгазпромбанк“,https://www.e-bgpb.by/iPWD/!iSOU.Login
-IB,Интернет-банкинг ОАО “Хоум Кредит Банк“,https://hc24.by/netteller-postbank/LoginPage.iface
-IB,Интернет-банкинг “Франсабанк“ ОАО,https://ibank.fransabank.by/v1/cgi/bsi.dll?T=RT_2Auth.BF
-IB,Интернет-банкинг Системы Банковского Самообслуживания (СБС) *,https://www.sbsibank.by/
-EMS,EasyPay,https://ssl.easypay.by/
-EMS,WebMoney,http://www.wmtransfer.by//
-IB,Интернет-банк ЗАО ""Альфа-Банк"",https://click.alfa-bank.by/webBank/private/details.action
-IB,Интернет-банкинг ОАО “АСБ Беларусбанк”,https://ibank.asb.by
-PS,WEBPAY,https://e-pay.by/
-IB,Интернет-банкинг ЗАО ""Трастбанк"",https://tbank.trustbank.by
-IB,Интернет-банкинг ЗАО ""ИнтерПэйБанк"",https://ibank.credexbank.by/
-IB,Интернет-банк ""Идея Банк 24"",https://ideabank24.by/
-IB,Эмуляция оплаты через АИС ЕРИП,http://93.84.121.178:10039/wps/PA_eTicketInquire/faces/jsps/testErip2.html
-IB,Эмуляция оплаты через АИС ЕРИП локально,http://localhost:10039/.eTicketInquirePortlet_v3/faces/jsps/testErip2.html
+[{
+    "id": 1,
+    "updatedOn": "2018-09-20 10:37:03.0590300",
+    "type": "IB",
+    "name": "Интернет-банкинг ОАО “БПС-Сбербанк“",
+    "url": "https://i.bps-sberbank.by/"
+  },
+  {
+    "id": 2,
+    "updatedOn": "2018-09-20 10:37:03.1090300",
+    "type": "IB",
+    "name": "Интернет-банкинг ОАО “Белагропромбанк“",
+    "url": "https://www.ibank.belapb.by/v1/cgi/bsi.dll?T=RT_2Auth.BF"
+  },
+  {
+    "id": 4,
+    "updatedOn": "2018-09-20 10:37:12.8290300",
+    "type": "IB",
+    "name": "Интернет-банк “Приорбанк“ ОАО",
+    "url": "https://www.prior.by/web/"
+  },
+  {
+    "id": 5,
+    "updatedOn": "2018-09-20 10:37:12.8370300",
+    "type": "IB",
+    "name": "Интернет-банк ЗАО “МТБанк“",
+    "url": "https://new.mybank.by/ib/site/login"
+  },
+  {
+    "id": 6,
+    "updatedOn": "2018-09-20 10:37:12.8440300",
+    "type": "IB",
+    "name": "Интернет-банкинг ЗАО “Банк “Решение“",
+    "url": "https://ib.rbank.by/signin"
+  },
+  {
+    "id": 7,
+    "updatedOn": "2018-09-20 10:37:12.8540300",
+    "type": "IB",
+    "name": "Интернет-банкинг ЗАО “БТА Банк“",
+    "url": "https://bta.by/signin"
+  },
+  {
+    "id": 8,
+    "updatedOn": "2018-09-20 10:37:12.8610300",
+    "type": "IB",
+    "name": "Интернет-банкинг ОАО “Белинвестбанк“",
+    "url": "https://ibank.belinvestbank.by/signin"
+  },
+  {
+    "id": 9,
+    "updatedOn": "2018-09-20 10:37:12.8680300",
+    "type": "IB",
+    "name": "Интернет-банк ЗАО “БНБ-Банк“",
+    "url": "https://http://imbanking.by/"
+  },
+  {
+    "id": 10,
+    "updatedOn": "2018-09-20 10:37:12.8750300",
+    "type": "IB",
+    "name": "Интернет-банк ОАО “Белгазпромбанк“",
+    "url": "https://www.e-bgpb.by/iPWD/!iSOU.Login"
+  },
+  {
+    "id": 11,
+    "updatedOn": "2018-09-20 10:37:12.8810300",
+    "type": "IB",
+    "name": "Интернет-банк ОАО “ВТБ“",
+    "url": "https://i.i-vtb.by/ipwd/!iSOU.Login"
+  },
+  {
+    "id": 12,
+    "updatedOn": "2018-09-20 10:37:12.8890300",
+    "type": "IB",
+    "name": "Интернет-банк “Франсабанк“ ОАО",
+    "url": "https://ibank.fransabank.by/v1/cgi/bsi.dll?T=RT_2Auth.BF"
+  },
+  {
+    "id": 13,
+    "updatedOn": "2018-09-20 10:37:12.8950300",
+    "type": "IB",
+    "name": "Интернет-банк ЗАО \"Альфа-Банк\"",
+    "url": "https://click.alfa-bank.by/webBank2/login.xhtml"
+  },
+  {
+    "id": 14,
+    "updatedOn": "2018-09-20 10:37:12.9010300",
+    "type": "IB",
+    "name": "Интернет-банкинг ОАО “АСБ Беларусбанк“",
+    "url": "https://ibank.asb.by"
+  },
+  {
+    "id": 15,
+    "updatedOn": "2018-09-20 10:37:12.9080300",
+    "type": "IB",
+    "name": "Интернет-банк ОАО “СтатусБанк“",
+    "url": "https://stb24.by/ipwd/!iSOU.login"
+  },
+  {
+    "id": 16,
+    "updatedOn": "2018-09-20 10:37:12.9140300",
+    "type": "IB",
+    "name": "Интернет-банкинг ЗАО “Цептер Банк“",
+    "url": "https://ibank.zepterbank.by/"
+  },
+  {
+    "id": 17,
+    "updatedOn": "2018-09-20 10:37:12.9210300",
+    "type": "IB",
+    "name": "Интернет-банк ЗАО “Идея Банк 24“",
+    "url": "https://ideabank24.by/"
+  }]

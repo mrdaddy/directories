@@ -5,7 +5,7 @@ public class LanguageUtils {
     private static final SUPPORTED_LANGUAGES DEFAULT_LANG = SUPPORTED_LANGUAGES.ru;
     public static String convertToSupportedLang(String lang) {
         if( SUPPORTED_LANGUAGES.valueOf(lang) == null) {
-            lang = SUPPORTED_LANGUAGES.ru.toString();
+            lang = DEFAULT_LANG.toString();
         }
         String supportedLang = lang;
         return supportedLang;

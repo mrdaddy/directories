@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
     @RunWith(MockitoJUnitRunner.class)
-    @Ignore
     public class PaymentSystemControllerTest {
         @Mock
         private PaymentSystemService paymentSystemService;
@@ -39,7 +38,7 @@ import static org.mockito.Mockito.when;
 
         @Test
         public void getPaymentSystems() {
-            when(paymentSystemService.getPaymentSystem("EN")).thenReturn(systemsTrue);
+            when(paymentSystemService.getPaymentSystem("en")).thenReturn(systemsTrue);
             systemsFake = paymentSystemController.getPaymentSystem(LanguageUtils.SUPPORTED_LANGUAGES.valueOf("en"),"test");
             assertTrue(systemsFake.equals(systemsTrue));
         }

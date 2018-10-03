@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -15,7 +16,7 @@ public class DirectoryUpdate {
     @ApiModelProperty(example = "Parameters", required = true, value = "Наименование справочника", dataType = "String")
     private DIRECTORY directory;
 
-    @ApiModelProperty(example = "2018-08-13T11:44:31.881+0300", required = true, value = "Дата последнего обновления справочника, часовой пояс Europe/Minsk", dataType = "datetime")
-    private Date lastUpdatedOn;
+    @ApiModelProperty(example = "2018-08-13 11:44:31.8810300", required = true, value = "Дата последнего обновления справочника, часовой пояс Europe/Minsk", dataType = "datetime")
+    private Timestamp lastUpdatedOn;
 
 }
