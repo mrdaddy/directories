@@ -1,7 +1,9 @@
 package com.rw.directories.controllers.IT;
 
-import com.rw.directories.BooleanTransformer;
 import com.rw.directories.dto.Country;
+import com.rw.directories.utils.DBUtils;
+import com.rw.directories.utils.LanguageUtils;
+import org.json.JSONArray;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,10 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -43,34 +42,45 @@ public class CountryControllerIT {
     private WebApplicationContext wac;
 
     private RestTemplate restTemplate;
-    private BooleanTransformer booleanTransformer;
 
     private MockMvc mockMvc;
     public List<Country> countriesTrue, countriesFake;
 
-    private static final String PATH_COUNTRY_SQL = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/SQLforTest/CreateTableForCountryIT";
-    private static final String PATH_COUNTRY_DATA = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/DataForCountryIT";
+    private static final String PATH_COUNTRY_SQL = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/SQLforTest/CreateTableForCountryIT";
+    private static final String PATH_COUNTRY_DATA = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/DataForCountryIT";
+
     @Before
     public void setUp() throws IOException {
 
         this.mockMvc = webAppContextSetup(this.wac).build();
         MockMvcClientHttpRequestFactory requestFactory = new MockMvcClientHttpRequestFactory(mockMvc);
         restTemplate = new RestTemplate(requestFactory);
-        booleanTransformer = new BooleanTransformer();
         countriesTrue = new ArrayList<>();
         countriesFake = new ArrayList<>();
+
+
         try {
             FileInputStream fstream = new FileInputStream(PATH_COUNTRY_DATA);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
+            StringBuilder builder = new StringBuilder();
             while ((strLine = br.readLine()) != null) {
-                String[] argumentsForCreateCountry = strLine.split(" ");
-                countriesTrue.add(new Country(argumentsForCreateCountry[0],
-                        argumentsForCreateCountry[1],
-                        booleanTransformer.transformToBoolean(argumentsForCreateCountry[2]),
-                        Integer.parseInt(argumentsForCreateCountry[3]),
-                        Integer.parseInt(argumentsForCreateCountry[4])));
+                builder.append(strLine);
             }
+
+            JSONArray jsonArray = new JSONArray(builder.toString());
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                Country country = new Country();
+                country.setCode(jsonArray.getJSONObject(i).getString("code"));
+                country.setName(jsonArray.getJSONObject(i).getString("name"));
+                country.setGlobalPrice(jsonArray.getJSONObject(i).getBoolean("globalPrice"));
+                country.setFreeTicketAge(jsonArray.getJSONObject(i).getInt("freeTicketAge"));
+                country.setChildrenTicketAge(jsonArray.getJSONObject(i).getInt("childrenTicketAge"));
+                countriesTrue.add(country);
+            }
+
         } catch (IOException e) {
             System.out.println("Input COUNTRY data error. Initialization failed");
         }
@@ -84,7 +94,8 @@ public class CountryControllerIT {
 
         try {
             namedParameterJdbcTemplate.getJdbcTemplate().execute("DROP TABLE ETICKET.COUNTRIES");
-        }catch (BadSqlGrammarException ex){}
+        } catch (BadSqlGrammarException ex) {
+        }
         namedParameterJdbcTemplate.getJdbcTemplate().execute(sqlCreateTable);
 
         String sqlInsertDataInTable = new String();
@@ -97,7 +108,7 @@ public class CountryControllerIT {
             namedParameters.put("CODE", country.getCode());
             namedParameters.put("NAME_EN", country.getName());
             namedParameters.put("NAME_RU", country.getName());
-            namedParameters.put("IS_GLOBAL_PRICE", booleanTransformer.transformToChar(country.isGlobalPrice()));
+            namedParameters.put("IS_GLOBAL_PRICE", DBUtils.toString(country.isGlobalPrice()));
             namedParameters.put("FREE_TICKET_AGE", country.getFreeTicketAge());
             namedParameters.put("CHILDREN_TICKET_AGE", country.getChildrenTicketAge());
 
@@ -109,8 +120,9 @@ public class CountryControllerIT {
     @Test
     public void testGetParametersList() {
 
+
         ResponseEntity<Country[]> countries = restTemplate.getForEntity(
-                "/" + version + "/directories/countries?lang=en&inm=test", Country[].class);
+                "/" + version + "/directories/countries?lang=" + LanguageUtils.SUPPORTED_LANGUAGES.en + "&inm=test", Country[].class);
         countriesFake = Arrays.asList(countries.getBody());
         assertTrue(countriesFake.equals(countriesTrue));
     }

@@ -19,5 +19,4 @@ public class PassengerCountry extends Directory {
     @ApiModelProperty(example = "HKG", required = true, value = "Код ISO государства", dataType = "String")
     private String isoCode;
 
-    public static Comparator<PassengerCountry> passengerCountryNameComparator = (e1, e2) -> e1.getName().compareTo(e2.getName());
 }

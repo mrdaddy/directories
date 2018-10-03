@@ -2,6 +2,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.Country;
 import com.rw.directories.services.CountryService;
+import com.rw.directories.utils.LanguageUtils;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @Api(value="countries", description="Сервис получение данных из справочника государств, в которые могут продаваться проездные документы", tags = "Справочник государств, в которые могут продаваться проездные документы", basePath="/countries")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class CountryController {
+public class CountryController extends BaseController {
 
     @Autowired
     CountryService countryService;
@@ -27,7 +28,7 @@ public class CountryController {
             @ApiResponse(code = 304, message = "Not Modified")
     })
 
-    List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа") String lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
-        return countryService.getCountries(lang);
+    public List<Country> getCountries(@RequestParam @ApiParam(value="Язык ответа", required = true) LanguageUtils.SUPPORTED_LANGUAGES lang, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
+        return countryService.getCountries(lang.toString());
     }
 }

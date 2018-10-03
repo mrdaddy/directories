@@ -3,6 +3,7 @@ package com.rw.directories.utils;
 import java.text.MessageFormat;
 
 public class DBUtils {
+
     public static String formatQueryWithParams(String query, String... lang) {
         return MessageFormat.format(query,lang);
     }
@@ -14,4 +15,13 @@ public class DBUtils {
             return false;
         }
     }
+
+    public static String toString(boolean value) {
+        if(value) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
+
 }

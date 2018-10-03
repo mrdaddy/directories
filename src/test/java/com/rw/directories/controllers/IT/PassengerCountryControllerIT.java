@@ -1,7 +1,10 @@
 package com.rw.directories.controllers.IT;
 
 import com.rw.directories.dto.PassengerCountry;
+import com.rw.directories.utils.LanguageUtils;
+import org.json.JSONArray;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -47,8 +51,8 @@ public class PassengerCountryControllerIT {
     private MockMvc mockMvc;
     public List<PassengerCountry> passengersTrue, passengersFake;
 
-    private static final String PATH_PASSENGER_COUNTRY_SQL = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/SQLforTest/CreateTableForPassengerCountryIT";
-    private static final String PATH_PASSENGER_COUNTRY_DATA = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/DataForPassengerCountryIT";
+    private static final String PATH_PASSENGER_COUNTRY_SQL = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/SQLforTest/CreateTableForPassengerCountryIT";
+    private static final String PATH_PASSENGER_COUNTRY_DATA = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/DataForPassengerCountryIT";
 
 
     @Before
@@ -61,13 +65,24 @@ public class PassengerCountryControllerIT {
 
         passengersFake = new ArrayList<>();
         passengersTrue = new ArrayList<>();
+
         try {
             FileInputStream fstream = new FileInputStream(PATH_PASSENGER_COUNTRY_DATA);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
+            StringBuilder builder = new StringBuilder();
             while ((strLine = br.readLine()) != null) {
-                String[] argumentsForCreatePassengersCountry = strLine.split(" ");
-                passengersTrue.add(new PassengerCountry( argumentsForCreatePassengersCountry[0], argumentsForCreatePassengersCountry[1]));
+                builder.append(strLine);
+            }
+
+            JSONArray jsonArray = new JSONArray(builder.toString());
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                PassengerCountry country = new PassengerCountry();
+                country.setName(jsonArray.getJSONObject(i).getString("name"));
+                country.setIsoCode(jsonArray.getJSONObject(i).getString("isoCode"));
+                passengersTrue.add(country);
             }
         } catch (IOException e) {
             System.out.println("Input PASSENGER_COUNTRY data error. Initialization failed");
@@ -87,17 +102,14 @@ public class PassengerCountryControllerIT {
 
         String sqlInsertDataInTable;
 
-        int id = 1;
         for (PassengerCountry passengerCountry : passengersTrue) {
-            sqlInsertDataInTable = "INSERT INTO ETICKET.PASSENGER_COUNTRIES VALUES (:id  , :iso_code , :name , :name )";
+            sqlInsertDataInTable = "INSERT INTO ETICKET.PASSENGER_COUNTRIES(ISO_CODE, NAME_RU, NAME_EN) VALUES (:iso_code , :name , :name )";
 
             Map namedParameters = new HashMap();
-            namedParameters.put("id", id);
             namedParameters.put("iso_code", passengerCountry.getIsoCode());
             namedParameters.put("name", passengerCountry.getName());
 
             namedParameterJdbcTemplate.update(sqlInsertDataInTable, namedParameters);
-            id++;
         }
     }
 
@@ -105,24 +117,11 @@ public class PassengerCountryControllerIT {
     public void getPassengerCountries() {
 
         ResponseEntity<PassengerCountry[]> passengerCountries = restTemplate.getForEntity(
-                "/" + version + "/directories/pass-countries?lang=en&inm=test", PassengerCountry[].class);
+                "/" + version + "/directories/pass-countries?lang=" + LanguageUtils.SUPPORTED_LANGUAGES.en + "&inm=test", PassengerCountry[].class);
         passengersFake = Arrays.asList(passengerCountries.getBody());
 
-        Collections.sort(passengersTrue, PassengerCountry.passengerCountryNameComparator);
 
-        boolean check = true;
-
-        if (passengersTrue.size() == passengersFake.size()) {
-            for (int i = 0; i < passengersTrue.size(); i++) {
-                if (!passengersFake.get(i).getName().equals(passengersTrue.get(i).getName()) || !passengersTrue.get(i).getIsoCode().equals(passengersFake.get(i).getIsoCode())) {
-                    check = false;
-                }
-            }
-        } else {
-            check = false;
-        }
-
-        assertTrue(check);
+        assertEquals(passengersTrue,passengersFake);
 
         namedParameterJdbcTemplate.getJdbcTemplate().execute("DROP TABLE ETICKET.PASSENGER_COUNTRIES");
     }

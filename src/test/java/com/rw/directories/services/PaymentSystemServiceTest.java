@@ -30,12 +30,10 @@ public class PaymentSystemServiceTest {
     public void setUp() {
         systemsFake = new ArrayList<>();
         systemsTrue = new ArrayList<>();
-        systemsTrue.add(new PaymentSystem("TYPE", "NAME", "SN", true, "url",
-                15, "1001011", "payName", "payURL", "payCancelURL", "test", true,
-                false, "agent", true, false));
-        systemsTrue.add(new PaymentSystem("ERIP", "rasschet", "erip", true, "url",
-                15, "1938403", "erip", "payURL", "payCancelURL", "test", true,
-                false, "agent", true, false));
+        systemsTrue.add(new PaymentSystem(PaymentSystem.PAYMENT_SYSTEM.valueOf("ERIP"), "NAME", "SHORTNAME",  true,
+                15, "1001011", "payName", "payURL", "payCancelURL",  true, false, true));
+        systemsTrue.add(new PaymentSystem(PaymentSystem.PAYMENT_SYSTEM.valueOf("ERIP"), "ERIP", "rasschet", true,
+                15, "1938403", "erip", "payURL", "payCancelURL", true, false, true));
 
     }
 

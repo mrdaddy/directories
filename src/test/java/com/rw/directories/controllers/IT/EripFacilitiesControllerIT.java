@@ -1,10 +1,11 @@
 package com.rw.directories.controllers.IT;
 
 
-        import com.rw.directories.BooleanTransformer;
+        import com.rw.directories.dto.Country;
         import com.rw.directories.dto.EripFacilities;
-        import com.rw.directories.dto.PaymentSystem;
+        import org.json.JSONArray;
         import org.junit.Before;
+        import org.junit.Ignore;
         import org.junit.Test;
         import org.junit.runner.RunWith;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,11 @@ public class EripFacilitiesControllerIT {
 
     private RestTemplate restTemplate;
 
-    private BooleanTransformer booleanTransformer;
     private MockMvc mockMvc;
     public List<EripFacilities> facilitiesTrue, facilitiesFake;
 
-    private static final String PATH_ERIP_FACILITIES_SQL = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/SQLforTest/CreateTableForEripFacilitiesIT";
-    private static final String PATH_ERIP_FACILITIES_DATA = "/Volumes/Files/MyFiles/programming/IBA/bel_chigunka/src/test/resources/DataForEripFacilitiesIT";
+    private static final String PATH_ERIP_FACILITIES_SQL = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/SQLforTest/CreateTableForEripFacilitiesIT";
+    private static final String PATH_ERIP_FACILITIES_DATA = "/Volumes/Files/MyFiles/programming/IBA/directories/src/test/resources/DataForEripFacilitiesIT";
 
     @Before
     public void setUp() throws IOException {
@@ -58,7 +58,6 @@ public class EripFacilitiesControllerIT {
         this.mockMvc = webAppContextSetup(this.wac).build();
         MockMvcClientHttpRequestFactory requestFactory = new MockMvcClientHttpRequestFactory(mockMvc);
         restTemplate = new RestTemplate(requestFactory);
-        booleanTransformer = new BooleanTransformer();
         facilitiesFake = new ArrayList<>();
         facilitiesTrue = new ArrayList<>();
 
@@ -66,10 +65,22 @@ public class EripFacilitiesControllerIT {
             FileInputStream fstream = new FileInputStream(PATH_ERIP_FACILITIES_DATA);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
+            StringBuilder builder = new StringBuilder();
             while ((strLine = br.readLine()) != null) {
-                String[] argumentsForCreateEripFacilities = strLine.split(",");
-                facilitiesTrue.add(new EripFacilities(argumentsForCreateEripFacilities[0],
-                        argumentsForCreateEripFacilities[1],argumentsForCreateEripFacilities[2]));}
+                builder.append(strLine);
+            }
+
+            JSONArray jsonArray = new JSONArray(builder.toString());
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                EripFacilities eripFacility = new EripFacilities();
+                eripFacility.setName(jsonArray.getJSONObject(i).getString("name"));
+                eripFacility.setType(jsonArray.getJSONObject(i).getString("type"));
+                eripFacility.setUrl(jsonArray.getJSONObject(i).getString("url"));
+
+                facilitiesTrue.add(eripFacility);
+            }
         } catch (IOException e) {
             System.out.println("Input ERIP_FACILITIES data error. Initialization failed");
         }
@@ -86,19 +97,16 @@ public class EripFacilitiesControllerIT {
         }catch (BadSqlGrammarException ex){}
         namedParameterJdbcTemplate.getJdbcTemplate().execute(sqlCreateTable);
 
-        String sqlInsertDataInTable = new String();
-        int id = 1;
+        String sqlInsertDataInTable;
         for (EripFacilities facility : facilitiesTrue) {
-            sqlInsertDataInTable = "INSERT INTO ETICKET.ERIP_PAYMENT_FACILITIES VALUES (:id, :type , :name , :url)";
+            sqlInsertDataInTable = "INSERT INTO ETICKET.ERIP_PAYMENT_FACILITIES(FACILITY_TYPE, FACILITY_NAME, FACILITY_URL) VALUES (:type , :name , :url)";
 
             Map namedParameters = new HashMap();
-            namedParameters.put("id", id);
             namedParameters.put("type", facility.getType());
             namedParameters.put("name", facility.getName());
             namedParameters.put("url", facility.getUrl());
 
             namedParameterJdbcTemplate.update(sqlInsertDataInTable, namedParameters);
-            id ++;
         }
 
     }

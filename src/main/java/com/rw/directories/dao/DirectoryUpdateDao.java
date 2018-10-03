@@ -1,5 +1,6 @@
 package com.rw.directories.dao;
 
+import com.rw.directories.DirectoryFactory;
 import com.rw.directories.dto.DirectoryUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -8,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.rw.directories.utils.DBUtils.formatQueryWithParams;
 
@@ -25,8 +28,8 @@ public class DirectoryUpdateDao {
     }
 
     private DirectoryUpdate getDirectoryUpdate(ResultSet rs) throws SQLException {
-        DirectoryUpdate directoryUpdate = new DirectoryUpdate();
-        directoryUpdate.setDirectory(rs.getString("DIRECTORY"));
+        DirectoryUpdate directoryUpdate =  new DirectoryUpdate();
+        directoryUpdate.setDirectory(DirectoryUpdate.DIRECTORY.valueOf(rs.getString("DIRECTORY").trim()));
         directoryUpdate.setLastUpdatedOn(rs.getTimestamp("UPDATED_ON"));
         return directoryUpdate;
     }

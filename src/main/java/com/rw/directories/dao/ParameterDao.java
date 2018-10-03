@@ -23,24 +23,27 @@ public class ParameterDao {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Parameter> getParameters(){
-        List<Parameter> params = jdbcTemplate.query(
-                SQLQueries.PARAMS_INFO, (rs, rowNum) -> getParameter(rs));
-        return params;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("IS_API_PROPAGATED", "1");
+        List<Parameter> parameters = jdbcTemplate.query(
+                SQLQueries.PARAMS_INFO, params, (rs, rowNum) -> getParameter(rs));
+        return parameters;
     }
 
     public Parameter getParameterByCode(String code) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("CODE", code);
-        Parameter param = jdbcTemplate.queryForObject(
+        params.put("IS_API_PROPAGATED", "1");
+        Parameter parameter = jdbcTemplate.queryForObject(
                 SQLQueries.PARAM_INFO, params, (rs, rowNum) -> getParameter(rs));
-        return param;
+        return parameter;
     }
 
     private Parameter getParameter(ResultSet rs) throws SQLException {
 
         Parameter parameter = DirectoryFactory.getDirectory(Parameter.class, rs);
 
-        parameter.setCategory(rs.getString("TYPE"));
+        parameter.setCategory(Parameter.CATEGORY.valueOf(rs.getString("TYPE")));
         parameter.setCode(rs.getString("CODE").trim());
         parameter.setValue(rs.getString("VALUE"));
         return parameter;

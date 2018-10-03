@@ -33,10 +33,10 @@ public class Country extends Directory{
     @ApiModelProperty(example = "true", required = true, value = "Признак, указывающий, как осуществляется продажа проездных документов (билетов) – по “глобальной цене” или нет", dataType = "boolean")
     private boolean isGlobalPrice;
 
-    @ApiModelProperty(example = "true", required = true, value = "Максимальный возраст ребенка для проезда по безденежному тарифу", dataType = "int")
+    @ApiModelProperty(example = "5", required = true, value = "Максимальный возраст ребенка для проезда по безденежному тарифу", dataType = "int")
     private int freeTicketAge;
 
-    @ApiModelProperty(example = "true", required = true, value = "Максимальный возраст ребенка для проезда по детскому тарифу", dataType = "int")
+    @ApiModelProperty(example = "10", required = true, value = "Максимальный возраст ребенка для проезда по детскому тарифу", dataType = "int")
     private int childrenTicketAge;
 
 }

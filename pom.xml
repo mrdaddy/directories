@@ -34,6 +34,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
@@ -64,6 +69,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+			<version>1.18.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -110,6 +116,13 @@
 			<artifactId>guava</artifactId>
 			<version>26.0-jre</version>
 		</dependency>
+		<dependency>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+			<version>0.0.20131108.vaadin1</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- <dependency>
 			<groupId>com.openshift</groupId>
 			<artifactId>openshift-restclient-java</artifactId>
@@ -194,8 +207,8 @@
 				<artifactId>swagger2markup-maven-plugin</artifactId>
 				<version>1.0.1</version>
 				<configuration>
-					<swaggerInput>${swagger.directory}/api.json</swaggerInput>
-					<outputFile>${asciidoctor.directory}/ApiDocumentation</outputFile>
+					<swaggerInput>${swagger.directory}/directories.json</swaggerInput>
+					<outputFile>${asciidoctor.directory}/directories</outputFile>
 					<config>
 						<swagger2markup.markupLanguage>ASCIIDOC</swagger2markup.markupLanguage>
 						<swagger2markup.outputLanguage>RU</swagger2markup.outputLanguage>

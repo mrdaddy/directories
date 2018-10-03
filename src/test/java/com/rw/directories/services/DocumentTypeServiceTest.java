@@ -34,8 +34,8 @@ public class DocumentTypeServiceTest {
 
         lang = new String("ru");
         documentTypesTrue = new ArrayList<>();
-        documentTypesTrue.add(new DocumentType("FH","NAME","STATUS",1,true,"CODE"));
-        documentTypesTrue.add(new DocumentType("HF","NAME_2","STATUS_2",2,false,"CODE_2"));
+        documentTypesTrue.add(new DocumentType("FH","NAME", DocumentType.STATUS.A,1,true,"CODE"));
+        documentTypesTrue.add(new DocumentType("HF","NAME_2",DocumentType.STATUS.A,2,false,"CODE_2"));
 
     }
 

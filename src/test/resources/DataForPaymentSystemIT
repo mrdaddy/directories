@@ -1,2 +1,50 @@
-BB_IB,Internet-banking system of Belarusbank,Internet-banking,1,http://93.84.121.178/wps/PA_eTicketInquire/IbbExample,20,100100111,poezd.rw.by,http://poezd.rw.by,http://poezd.rw.by_cancel,payment_timeout=300;order_result_service=http://93.84.121.178/wps/PA_eTicketInquire/IbbExampleStatusServlet?status0;test=1,1,0,2101,1,1
-ERIP,Integrated Republican Information Payment system IRIP,Payment system Raschet ,1,http://one,20,11100101,name,http://two,http//five,check_agent=false;extra_payment_time=900,1,1,2102,0,0
+  [
+  {
+    "id": 1,
+    "updatedOn": "2018-09-19 11:11:11.2710300",
+    "type": "BB_IB",
+    "name": "Интернет-банкинг ОАО “АСБ Беларусбанк”",
+    "shortName": "Интернет-банкинг",
+    "paymentTime": 20,
+    "eticketCode": "100100111",
+    "eticketName": "poezd.rw.by",
+    "paymentSuccessUrl": "poezd.rw.by",
+    "paymentErrorUrl": "poezd.rw.by",
+    "default": false,
+    "ticketReturnEnabled": true,
+    "onlineReturnEnabled": true,
+    "test": false
+  },
+  {
+    "id": 2,
+    "updatedOn": "2018-09-19 11:11:11.2710300",
+    "type": "ERIP",
+    "name": "Система “Расчет” ",
+    "shortName": "Система “Расчет”",
+    "paymentTime": 20,
+    "eticketCode": "",
+    "eticketName": "",
+    "paymentSuccessUrl": "",
+    "paymentErrorUrl": "",
+    "default": false,
+    "ticketReturnEnabled": false,
+    "onlineReturnEnabled": false,
+    "test": false
+  },
+  {
+    "id": 3,
+    "updatedOn": "2018-09-19 11:11:11.2710300",
+    "type": "BB_IA",
+    "name": "Оплата с помощью банковских карт",
+    "shortName": "Интернет-эквайринг",
+    "paymentTime": 20,
+    "eticketCode": "814050",
+    "eticketName": "devpoezd.rw.by",
+    "paymentSuccessUrl": "https://93.84.121.178/wps/PA_eTicketInquire/PaymentTicketResultAssist?status=0",
+    "paymentErrorUrl": "https://93.84.121.178/wps/PA_eTicketInquire/PaymentTicketResultAssist?status=1",
+    "default": true,
+    "ticketReturnEnabled": true,
+    "onlineReturnEnabled": true,
+    "test": false
+  }
+]

@@ -3,6 +3,7 @@ package com.rw.directories.controllers;
 
 import com.rw.directories.dto.DocumentType;
 import com.rw.directories.services.DocumentTypeService;
+import com.rw.directories.utils.LanguageUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,8 +36,8 @@ public class DocumentTypeControllerTest{
         lang = "ru";
         mock = "test";
         documentTypesTrue = new ArrayList<>();
-        documentTypesTrue.add(new DocumentType("FH","NAME","STATUS",1,true,"CODE"));
-        documentTypesTrue.add(new DocumentType("HF","NAME_2","STATUS_2",2,false,"CODE_2"));
+        documentTypesTrue.add(new DocumentType("FH","NAME",DocumentType.STATUS.A,1,true,"CODE"));
+        documentTypesTrue.add(new DocumentType("HF","NAME_2",DocumentType.STATUS.A,2,false,"CODE_2"));
 
     }
 
@@ -44,7 +45,7 @@ public class DocumentTypeControllerTest{
     public void getDocumentTypes(){
 
         when(documentTypeService.getDocumentTypes(lang)).thenReturn(documentTypesTrue);
-        documentTypesFake = documentTypeController.getDocumentTypes(lang,mock);
+        documentTypesFake = documentTypeController.getDocumentTypes(LanguageUtils.SUPPORTED_LANGUAGES.valueOf(lang),mock);
         assertTrue(documentTypesTrue.equals(documentTypesFake));
 
     }

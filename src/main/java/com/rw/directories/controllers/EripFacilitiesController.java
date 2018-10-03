@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Api(value = "erip-facilities", description = "Платежные инструменты системы “Расчет“", tags = "Справочник платежных инструментов системы “Расчет“", basePath = "/erip-facilities")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class EripFacilitiesController {
+public class EripFacilitiesController extends BaseController {
 
     @Autowired
     EripFacilitiesService eripFacilitiesService;
@@ -26,7 +26,7 @@ public class EripFacilitiesController {
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<EripFacilities> getEripFacilities(@RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
+    public List<EripFacilities> getEripFacilities(@RequestHeader(name = "IF-NONE-MATCH", required = false) @ApiParam(name = "IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws EmptyResultDataAccessException {
         return eripFacilitiesService.getEripFacilities();
     }
 }

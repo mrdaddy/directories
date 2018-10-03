@@ -1,2 +1,46 @@
-zz NAME_1 true 7 13
-xx NAME_2 true 6 14
+[ {
+    "id": 2,
+    "updatedOn": "2018-09-18 17:04:35.7900300",
+    "code": "21",
+    "name": "Беларусь",
+    "freeTicketAge": 5,
+    "childrenTicketAge": 10,
+    "globalPrice": false
+  },
+  {
+    "id": 3,
+    "updatedOn": "2018-09-18 17:04:35.7900300",
+    "code": "22",
+    "name": "Украина",
+    "freeTicketAge": 5,
+    "childrenTicketAge": 10,
+    "globalPrice": false
+  },
+  {
+    "id": 4,
+    "updatedOn": "2018-09-18 17:04:35.7900300",
+    "code": "23",
+    "name": "Молдова",
+    "freeTicketAge": 5,
+    "childrenTicketAge": 10,
+    "globalPrice": false
+  },
+  {
+    "id": 5,
+    "updatedOn": "2018-09-18 17:04:35.7900300",
+    "code": "24",
+    "name": "Литва",
+    "freeTicketAge": 5,
+    "childrenTicketAge": 10,
+    "globalPrice": false
+  },
+  {
+    "id": 6,
+    "updatedOn": "2018-09-18 17:04:35.7900300",
+    "code": "25",
+    "name": "Латвия",
+    "freeTicketAge": 5,
+    "childrenTicketAge": 10,
+    "globalPrice": false
+  }
+  ]

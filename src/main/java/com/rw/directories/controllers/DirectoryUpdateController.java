@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @Api(value="dir-updates", description="Сервис получение данных из справочника стран, в которые могут продаваться проездные документы", tags = "Список наименований справочников и даты их последнего обновления", basePath="/dir-updates")
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class DirectoryUpdateController {
+public class DirectoryUpdateController extends BaseController {
     @Autowired
     DirectoryUpdateService directoryUpdateService;
 
@@ -24,7 +24,7 @@ public class DirectoryUpdateController {
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    List<DirectoryUpdate> getDirectoryUpdates(@RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    public List<DirectoryUpdate> getDirectoryUpdates(@RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         List<DirectoryUpdate> directoryUpdates = directoryUpdateService.getDirectoryUpdates();
         return directoryUpdates;
     }
